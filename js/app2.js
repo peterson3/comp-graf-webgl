@@ -1,3 +1,17 @@
+class Ponto {
+
+  constructor (x, y){
+    this.x = x;
+    this.y= y;
+  }
+
+ desenhar() {
+    context.fillStyle = "red";
+    context.fillRect(this.x, this.y, 5, 5);
+    context.fillText("("+this.x+","+this.y+")", this.x, this.y);
+  }
+}
+
 function start() {
 
 var canvas = document.getElementById("glcanvas");
@@ -5,7 +19,17 @@ context = canvas.getContext("2d");
 context.fillStyle="#FF0000";
 
 
-var ponto = [0, 0];
+
+//var ponto_test = new Ponto(25, 25);
+
+var pontos = [];
+pontos.push(new Ponto(25, 25));
+
+for (i=0; i<pontos.length; i++){
+  pontos[i].desenhar();
+}
+
+var ponto1 = [0, 0];
 var ponto2 = [100, 100];
 var ponto3 = [0, 100];
 var ponto4 = [100, 0];
@@ -30,7 +54,7 @@ var ponto16 = [60, 35];
 var ponto17 = [50, 50];
 
 
-desenhaPonto(ponto);
+desenhaPonto(ponto1);
 desenhaPonto(ponto2);
 desenhaPonto(ponto3);
 desenhaPonto(ponto4);
@@ -54,11 +78,11 @@ context.beginPath();
   //context.moveTo(10, 20); // x = 10 (10 px from the left edge of the canvas), y = 20 (20 px from the top edge of the canvas)
   //context.lineTo(100, 97); // x = 100, y = 97
   //context.lineTo(50, 105); // x = 50, y = 100
-  conectaPonto(ponto, ponto3);
-  conectaPonto(ponto, ponto4);
+  conectaPonto(ponto1, ponto3);
+  conectaPonto(ponto1, ponto4);
   conectaPonto(ponto2,ponto4);
   conectaPonto(ponto2, ponto3);
-  conectaPonto(ponto, ponto7);
+  conectaPonto(ponto1, ponto7);
   conectaPonto(ponto7, ponto8);
   conectaPonto(ponto8,ponto9);
   conectaPonto(ponto9,ponto10);
@@ -83,11 +107,11 @@ context.beginPath();
   conectaPonto(ponto17,ponto16);
   conectaPonto(ponto16,ponto12);
   conectaPonto(ponto15,ponto7);
-conectaPonto(ponto6,ponto15);
-conectaPonto(ponto6,ponto16);
-conectaPonto(ponto6,ponto);
-conectaPonto(ponto6,ponto4);
-conectaPonto(ponto15,ponto16);
+  conectaPonto(ponto6,ponto15);
+  conectaPonto(ponto6,ponto16);
+  conectaPonto(ponto6,ponto1);
+  conectaPonto(ponto6,ponto4);
+  conectaPonto(ponto15,ponto16);
 
 context.stroke();
 }
