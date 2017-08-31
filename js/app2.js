@@ -2,22 +2,25 @@ function start() {
 
 var canvas = document.getElementById("glcanvas");
 context = canvas.getContext("2d");
+context.fillStyle="#FF0000";
+
 
 var ponto = [0, 0];
 var ponto2 = [100, 100];
 var ponto3 = [0, 100];
 var ponto4 = [100, 0];
 
+
 var ponto5 = [50, 80];
 var ponto6 = [50, 20];
 
 
-var ponto7 = [10, 40];
+var ponto7 = [10, 30];
 var ponto8 = [10, 70];
 var ponto9 = [25, 90];
 var ponto10 = [75, 90];
 var ponto11 = [90, 70];
-var ponto12 = [90, 40];
+var ponto12 = [90, 30];
 
 var ponto13 = [40, 60];
 var ponto14 = [60, 60];
@@ -55,13 +58,46 @@ context.beginPath();
   conectaPonto(ponto, ponto4);
   conectaPonto(ponto2,ponto4);
   conectaPonto(ponto2, ponto3);
+  conectaPonto(ponto, ponto7);
+  conectaPonto(ponto7, ponto8);
+  conectaPonto(ponto8,ponto9);
+  conectaPonto(ponto9,ponto10);
+  conectaPonto(ponto10,ponto11);
+  conectaPonto(ponto11,ponto12);
+  conectaPonto(ponto12, ponto4);
+  conectaPonto(ponto3, ponto8);
+  conectaPonto(ponto3, ponto9);
+  conectaPonto(ponto9, ponto5);
+  conectaPonto(ponto5, ponto10);
+  conectaPonto(ponto2, ponto11);
+  conectaPonto(ponto2, ponto10);
+  conectaPonto(ponto11, ponto14);
+  conectaPonto(ponto5,ponto14);
+  conectaPonto(ponto5, ponto13);
+  conectaPonto(ponto13,ponto8);
+  conectaPonto(ponto17,ponto14);
+  conectaPonto(ponto17,ponto13);
+  conectaPonto(ponto7,ponto13);
+  conectaPonto(ponto12,ponto14);
+  conectaPonto(ponto17,ponto15);
+  conectaPonto(ponto17,ponto16);
+  conectaPonto(ponto16,ponto12);
+  conectaPonto(ponto15,ponto7);
+conectaPonto(ponto6,ponto15);
+conectaPonto(ponto6,ponto16);
+conectaPonto(ponto6,ponto);
+conectaPonto(ponto6,ponto4);
+conectaPonto(ponto15,ponto16);
 
 context.stroke();
 }
 
 function desenhaPonto(P){
-  context.fillRect(P[0], P[1], 3, 3);
-
+  P[0] = P[0]*3+25;
+  P[1] = P[1]*3+25;
+  context.fillRect(P[0], P[1], 2, 2);
+  context.fillStyle = "RED";
+  context.fillText("("+P[0]+","+P[1]+")", P[0], P[1]);
 }
 
 function conectaPonto(P1, P2){
