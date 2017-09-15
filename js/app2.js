@@ -1,17 +1,3 @@
-class Ponto {
-
-  constructor (x, y){
-    this.x = x;
-    this.y= y;
-  }
-
- desenhar() {
-    context.fillStyle = "red";
-    context.fillRect(this.x, this.y, 5, 5);
-    context.fillText("("+this.x+","+this.y+")", this.x, this.y);
-  }
-}
-
 function start() {
 
 var canvas = document.getElementById("glcanvas");
@@ -19,79 +5,52 @@ context = canvas.getContext("2d");
 context.fillStyle="#FF0000";
 
 
+var vertices = [];
+vertices.push(new Vertice(0, 0));
+vertices.push(new Vertice(100, 100));
+vertices.push(new Vertice(0, 100));
+vertices.push(new Vertice(100, 0));
+vertices.push(new Vertice(50, 80));
+vertices.push(new Vertice(50, 20));
+vertices.push(new Vertice(10, 30));
+vertices.push(new Vertice(10, 70));
+vertices.push(new Vertice(25, 90));
+vertices.push(new Vertice(75, 90));
+vertices.push(new Vertice(90, 70));
+vertices.push(new Vertice(90, 30));
+vertices.push(new Vertice(40, 60));
+vertices.push(new Vertice(60, 60));
+vertices.push(new Vertice(40, 35));
+vertices.push(new Vertice(60, 35));
+vertices.push(new Vertice(50, 50));
 
-//var ponto_test = new Ponto(25, 25);
 
-var pontos = [];
-pontos.push(new Ponto(25, 25));
-
-for (i=0; i<pontos.length; i++){
-  pontos[i].desenhar();
+for (i=0; i<vertices.length; i++){
+  vertices[i].desenhar();
 }
 
-var ponto1 = [0, 0];
-var ponto2 = [100, 100];
-var ponto3 = [0, 100];
-var ponto4 = [100, 0];
+var arestas =[];
+arestas.push(new Aresta(vertices[0], vertices[2]));
+arestas.push(new Aresta(vertices[0], vertices[3]));
+arestas.push(new Aresta(vertices[1], vertices[3]));
+arestas.push(new Aresta(vertices[1], vertices[2]));
+arestas.push(new Aresta(vertices[0], vertices[6]));
+arestas.push(new Aresta(vertices[6], vertices[7]));
+arestas.push(new Aresta(vertices[7], vertices[8]));
+arestas.push(new Aresta(vertices[8], vertices[9]));
+arestas.push(new Aresta(vertices[9], vertices[10]));
+arestas.push(new Aresta(vertices[10], vertices[11]));
+arestas.push(new Aresta(vertices[11], vertices[3]));
+arestas.push(new Aresta(vertices[2], vertices[7]));
+arestas.push(new Aresta(vertices[2], vertices[8]));
+arestas.push(new Aresta(vertices[8], vertices[4]));
 
 
-var ponto5 = [50, 80];
-var ponto6 = [50, 20];
+for (i=0; i<arestas.length; i++){
+  arestas[i].desenhar();
+}
 
-
-var ponto7 = [10, 30];
-var ponto8 = [10, 70];
-var ponto9 = [25, 90];
-var ponto10 = [75, 90];
-var ponto11 = [90, 70];
-var ponto12 = [90, 30];
-
-var ponto13 = [40, 60];
-var ponto14 = [60, 60];
-
-var ponto15 = [40, 35];
-var ponto16 = [60, 35];
-var ponto17 = [50, 50];
-
-
-desenhaPonto(ponto1);
-desenhaPonto(ponto2);
-desenhaPonto(ponto3);
-desenhaPonto(ponto4);
-desenhaPonto(ponto5);
-desenhaPonto(ponto6);
-desenhaPonto(ponto7);
-desenhaPonto(ponto8);
-desenhaPonto(ponto9);
-desenhaPonto(ponto10);
-desenhaPonto(ponto11);
-desenhaPonto(ponto12);
-desenhaPonto(ponto13);
-desenhaPonto(ponto14);
-desenhaPonto(ponto15);
-desenhaPonto(ponto16);
-desenhaPonto(ponto17);
-
-
-context.beginPath();
-  // all points are given as x (from left to right), y (from top to bottom)
-  //context.moveTo(10, 20); // x = 10 (10 px from the left edge of the canvas), y = 20 (20 px from the top edge of the canvas)
-  //context.lineTo(100, 97); // x = 100, y = 97
-  //context.lineTo(50, 105); // x = 50, y = 100
-  conectaPonto(ponto1, ponto3);
-  conectaPonto(ponto1, ponto4);
-  conectaPonto(ponto2,ponto4);
-  conectaPonto(ponto2, ponto3);
-  conectaPonto(ponto1, ponto7);
-  conectaPonto(ponto7, ponto8);
-  conectaPonto(ponto8,ponto9);
-  conectaPonto(ponto9,ponto10);
-  conectaPonto(ponto10,ponto11);
-  conectaPonto(ponto11,ponto12);
-  conectaPonto(ponto12, ponto4);
-  conectaPonto(ponto3, ponto8);
-  conectaPonto(ponto3, ponto9);
-  conectaPonto(ponto9, ponto5);
+/*
   conectaPonto(ponto5, ponto10);
   conectaPonto(ponto2, ponto11);
   conectaPonto(ponto2, ponto10);
@@ -112,19 +71,5 @@ context.beginPath();
   conectaPonto(ponto6,ponto1);
   conectaPonto(ponto6,ponto4);
   conectaPonto(ponto15,ponto16);
-
-context.stroke();
-}
-
-function desenhaPonto(P){
-  P[0] = P[0]*3+25;
-  P[1] = P[1]*3+25;
-  context.fillRect(P[0], P[1], 2, 2);
-  context.fillStyle = "RED";
-  context.fillText("("+P[0]+","+P[1]+")", P[0], P[1]);
-}
-
-function conectaPonto(P1, P2){
-  context.moveTo(P1[0], P1[1]);
-  context.lineTo(P2[0], P2[1]);
+  */
 }
