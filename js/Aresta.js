@@ -10,4 +10,5 @@ class Aresta {
     context.lineTo(this.vertice2.x, this.vertice2.y);
     context.stroke();
   }
+  
 }

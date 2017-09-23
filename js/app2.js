@@ -26,7 +26,7 @@ vertices.push(new Vertice(50, 50));
 
 
 for (i=0; i<vertices.length; i++){
-  vertices[i].desenhar();
+//  vertices[i].desenhar();
 }
 
 var arestas =[];
@@ -44,6 +44,26 @@ arestas.push(new Aresta(vertices[11], vertices[3]));
 arestas.push(new Aresta(vertices[2], vertices[7]));
 arestas.push(new Aresta(vertices[2], vertices[8]));
 arestas.push(new Aresta(vertices[8], vertices[4]));
+arestas.push(new Aresta(vertices[9], vertices[4]));
+arestas.push(new Aresta(vertices[4], vertices[13]));
+arestas.push(new Aresta(vertices[13], vertices[10]));
+arestas.push(new Aresta(vertices[4], vertices[12]));
+arestas.push(new Aresta(vertices[7], vertices[12]));
+arestas.push(new Aresta(vertices[12], vertices[13]));
+arestas.push(new Aresta(vertices[12], vertices[16]));
+arestas.push(new Aresta(vertices[13], vertices[16]));
+arestas.push(new Aresta(vertices[6], vertices[12]));
+arestas.push(new Aresta(vertices[13], vertices[11]));
+arestas.push(new Aresta(vertices[16], vertices[14]));
+arestas.push(new Aresta(vertices[16], vertices[15]));
+arestas.push(new Aresta(vertices[14], vertices[15]));
+arestas.push(new Aresta(vertices[5], vertices[14]));
+arestas.push(new Aresta(vertices[5], vertices[15]));
+arestas.push(new Aresta(vertices[0], vertices[5]));
+arestas.push(new Aresta(vertices[3], vertices[5]));
+arestas.push(new Aresta(vertices[14], vertices[6]));
+arestas.push(new Aresta(vertices[11], vertices[15]));
+arestas.push(new Aresta(vertices[1], vertices[9]));
 
 
 for (i=0; i<arestas.length; i++){
