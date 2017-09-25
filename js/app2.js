@@ -3,9 +3,23 @@ $(document).ready(function(){
 	//$("#verticeTable").hide();
 	//$("#arestaTable").hide();
 	//$("#faceTable").hide();
+	
+
+
+
+
 });
 
+var vertices = [];
 function start() {
+	// var a = [[8, 3], [2, 4], [3, 6]];
+	// var b = [[1, 2, 3], [4, 6, 8]];
+	// document.write('matrix a:<br />');
+	// Utils.exibeMatriz(a);
+	// document.write('matrix b:<br />');
+	// Utils.exibeMatriz(b);
+	// document.write('a * b =<br />');
+	// Utils.exibeMatriz(Utils.multiplicaMatriz(a, b));
 
 var canvas = document.getElementById("glcanvas");
 context = canvas.getContext("2d");
@@ -21,7 +35,6 @@ var info = document.getElementById("info");
 
 
 //Definindo Vértices (x,y,z)
-var vertices = [];
 vertices.push(new Vertice(0, 0, Utils.getRandomInt(0, 31)));
 vertices.push(new Vertice(100, 100, Utils.getRandomInt(0, 31)));
 vertices.push(new Vertice(0, 100, Utils.getRandomInt(0, 31)));
@@ -228,5 +241,29 @@ function limparCanvas(){
 }
 
 function imprimirVerticeMatricial(){
-	var num_vert = document.getElementById("input_num_vert").Text;
+	 var num_vert = Number(document.getElementById("input_num_vert").value);
+	 var responseArea = document.getElementById("interact");
+	
+	// console.log(vertices);
+	// console.log(num_vert);
+	// console.log(vertices[num_vert]);
+	
+	// //Imprimindo Tabela de Vértices
+	// var verticeTable= "<table id='vertToMatrix' border=2 width=5%>";
+	// verticeTable += "<tr><td>" + vertices[num_vert].x +"</td></tr>";
+	// verticeTable += "<tr><td>" + vertices[num_vert].y +"</td></tr>";
+	// verticeTable += "<tr><td>" + vertices[num_vert].z +"</td></tr>";
+	// verticeTable += "<tr><td>" + 1 +"</td></tr>";
+	// verticeTable += "</table>";
+	// responseArea.innerHTML = "<h3>Matriz do Vértice "+num_vert+"</h3>" + verticeTable;
+	let m = vertices[num_vert].getVerticeAsMatrix();
+	console.log(m);
+	responseArea.innerHTML = Utils.exibeMatrizAsTable(m);
+	
+	var a = [[8, 3], [2, 4], [3, 6]];
+	responseArea.innerHTML+=Utils.exibeMatrizAsTable(a);
+	
+	
+	var b= [[8, 3,8, 3], [2, 4,8, 3], [3, 6,8, 3],[8, 3,8, 3]];
+	responseArea.innerHTML+=Utils.exibeMatrizAsTable(b);
 }

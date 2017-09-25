@@ -11,7 +11,15 @@ class Vertice {
 	VERTICE_COUNTER ++;
 	
   }
-
+	getVerticeAsMatrix (){
+		let matriz = [];
+		matriz.push([this.x]);
+		matriz.push([this.y]);
+		matriz.push([this.z]);
+		matriz.push([1]);
+		return matriz;
+	}
+	
  desenhar() {
     let radius = 1;
     context.beginPath();
