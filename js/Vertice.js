@@ -1,5 +1,4 @@
 class Vertice {
-
   constructor (x, y, z){
     //this.x = x*3+25;
     //this.y= y*3+25;
@@ -9,7 +8,6 @@ class Vertice {
 	this.i = VERTICE_COUNTER;
 	//console.log(VERTICE_COUNTER);
 	VERTICE_COUNTER ++;
-	
   }
 	getVerticeAsMatrix (){
 		let matriz = [];

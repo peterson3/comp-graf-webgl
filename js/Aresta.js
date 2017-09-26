@@ -5,13 +5,6 @@ class Aresta {
 	this.i = ARESTA_COUNTER;
 	ARESTA_COUNTER++;
   }
-  
-  /*constructor (verts, i, j){
-    this.vertice1 = verts[i];
-    this.vertice2 = verts[j];
-	this.i = i;
-	this.j = j;
-  }*/
 
   desenhar(){
     context.beginPath();
@@ -29,6 +22,7 @@ class Aresta {
 	context.fillText(i, (this.vertice1.x + this.vertice2.x)/2, (this.vertice1.y+this.vertice2.y)/2);
   }
 
+	//Retorna o Vertice Intersecao entre duas arestas
 	static getVerticeIntersecao (aresta1, aresta2){
 		if (aresta1.vertice1.eIgual(aresta2.vertice1)){
 			return aresta1.vertice1;
