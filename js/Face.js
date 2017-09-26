@@ -51,7 +51,7 @@ class Face {
 		}
 		
 		//iterar sobre o vetor
-		for (i=0; i<qtdArestas; i++){
+		for (let i=0; i<qtdArestas; i++){
 			if (i==(qtdArestas-1)){
 				//Ultima Iteracao
 				this.ligarAresta(this.arestas[i], this.arestas[0]);

@@ -18,8 +18,8 @@ class Vertice {
 		return matriz;
 	}
 	
- desenhar() {
-    let radius = 1;
+	desenhar() {
+    let radius = 3;
     context.beginPath();
     context.arc(this.x, this.y, radius, 0, 2 * Math.PI, false);
     context.fillStyle = "red";

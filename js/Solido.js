@@ -94,91 +94,97 @@ class Solido{
 		else{
 			return false;
 		}
-
 	}
 	
 	imprimirTabelaGeral (){
 		//Imprimindo Tabela de Vértices
-		var verticeTable= "<table id='verticeTable' border=1 width=30% style='float: left;'>";
+		let verticeTable= "<table id='verticeTable' border=1 width=30% style='float: left;'>";
 			
-		for (let i=0; i<vertices.length; i++){
+		for (let i=0; i<this.vertices.length; i++){
 			// vertices[i].desenhar();
 			//vertices[i].desenhar_com_numero(i);
 			verticeTable += "<tr>";
 			verticeTable += "<td>";
-			verticeTable += "v" + i + "= (" + vertices[i].x + "," + vertices[i].y + "," + vertices[i].z + ")";
+			verticeTable += "v" + i + "= (" + this.vertices[i].x + "," + this.vertices[i].y + "," + this.vertices[i].z + ")";
 			verticeTable += "</td>";
 			verticeTable += "</tr>";
 		}
 		verticeTable += "</table>";
-		info.innerHTML += verticeTable;
 		
 		//Imprimindo Tabela de Arestas
-		var arestaTable= "<table id='arestaTable' border=1 width=30% style='float: left;'>";
-		for (let i=0; i<arestas.length; i++){
-		arestas[i].desenhar();
+		let arestaTable= "<table id='arestaTable' border=1 width=30% style='float: left;'>";
+		for (let i=0; i<this.arestas.length; i++){
+		//this.arestas[i].desenhar();
 		//  arestas[i].desenhar_com_numero(i);
 			arestaTable += "<tr>";
 			arestaTable += "<td>";
-			arestaTable += "e" + i + "= " + "v"+arestas[i].vertice1.i + ", " + "v" + arestas[i].vertice2.i;
+			arestaTable += "e" + i + "= " + "v"+ this.arestas[i].vertice1.i + ", " + "v" + this.arestas[i].vertice2.i;
 			arestaTable += "</td>";
 			arestaTable += "</tr>";
 		}
 		arestaTable += "</table>";
-		info.innerHTML += arestaTable;
 		
 		//Imprimindo Tabela de Faces
-		var faceTable= "<table id='faceTable' border=1 width=30% style='float: left;'>";
-		for (let j=0; j<faces.length; j++){
+		let faceTable= "<table id='faceTable' border=1 width=30% style='float: left;'>";
+		for (let j=0; j<this.faces.length; j++){
 			//arestas[i].desenhar();
 			//faces[j].desenhar();
 			faceTable += "<tr>";
 			faceTable += "<td>";
 			faceTable += "f" + j + "= ";
-			for (i=0; i< faces[j].arestas.length; i++){
-				faceTable += "e"+ faces[j].arestas[i].i + ", ";
+			for (let i=0; i< this.faces[j].arestas.length; i++){
+				faceTable += "e"+ this.faces[j].arestas[i].i + ", ";
 			}
-			faceTable += "e"+ faces[j].arestas[0].i;
+			faceTable += "e"+ this.faces[j].arestas[0].i;
 			faceTable += "</td>";
 			faceTable += "</tr>";
 		}
 		
 		faceTable += "</table>";
-		info.innerHTML += faceTable;
-
+	
+		return verticeTable + arestaTable + faceTable;
 	}
 	
-	desenhar(){	
+	desenhar(){
+		for (let i=0; i<this.arestas.length; i++){
+			this.arestas[i].desenhar();
+		}
+		
+		for (let i=0; i<this.faces.length; i++){
+			this.faces[i].desenhar();
+		}
+	}
+	desenhar3d(){	
 		//Desenhando 3D
 		//Definindo vértices projetados em profundidade no Z (simulado)
 		var vertices2 = [];
-		var vertLen = vertices.length;
-		for (i=0; i<vertLen; i++){
-		vertices2.push(new Vertice(vertices[i].x+50, vertices[i].y+50, vertices[i].z+50));
+		var vertLen = this.vertices.length;
+		for (let i=0; i<vertLen; i++){
+		vertices2.push(new Vertice(this.vertices[i].x+50, this.vertices[i].y+50, this.vertices[i].z+50));
 		}
 		
-		for (i=0; i<arestas.length; i++){
-				arestas[i].desenhar();
+		for (let i=0; i<this.arestas.length; i++){
+				this.arestas[i].desenhar();
 			}
 			
-		for (i=0; i<vertices2.length; i++){
+		for (let i=0; i<vertices2.length; i++){
 			vertices2[i].desenhar();
 		}
 		
 		var arestasEmZ = []; //Arestas da integração
-		for (i=0; i<vertices.length; i++){
-			arestasEmZ.push(new Aresta(vertices[i], vertices2[i]));
+		for (let i=0; i<this.vertices.length; i++){
+			arestasEmZ.push(new Aresta(this.vertices[i], vertices2[i]));
 		}
 		
-		for (i=0; i<arestasEmZ.length; i++){
+		for (let i=0; i<arestasEmZ.length; i++){
 				arestasEmZ[i].desenhar();
 			}
 			
 		var arestasNovas = []; //Arestas no final
-		for (i=0; i<arestas.length; i++){
+		for (let i=0; i<this.arestas.length; i++){
 				arestasNovas.push(new Aresta
-				(new Vertice(arestas[i].vertice1.x+50, arestas[i].vertice1.y+50, arestas[i].vertice1.z+50 ),
-					new Vertice(arestas[i].vertice2.x+50, arestas[i].vertice2.y+50, arestas[i].vertice2.z+50)));
+				(new Vertice(this.arestas[i].vertice1.x+50, this.arestas[i].vertice1.y+50, this.arestas[i].vertice1.z+50 ),
+					new Vertice(this.arestas[i].vertice2.x+50, this.arestas[i].vertice2.y+50, this.arestas[i].vertice2.z+50)));
 				arestasNovas[i].desenhar();
 			}
 		
