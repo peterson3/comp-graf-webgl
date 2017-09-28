@@ -1,5 +1,5 @@
 class Utils{
-	
+
 	static getRandomColor(){
 		var letters = '0123456789ABCDEF';
 		var color = '#';
@@ -8,19 +8,20 @@ class Utils{
 		}
 		return color;
 	}
-	
+
 	static getRandomInt (min, max){
 		min = Math.ceil(min);
 		max = Math.floor(max);
 		return Math.floor(Math.random() * (max - min)) + min;
 	}
-	
-	
+
+
 	static  multiplicaMatriz(a, b) {
 		   var aNumRows = a.length, aNumCols = a[0].length,
 			  bNumRows = b.length, bNumCols = b[0].length,
 			  m = new Array(aNumRows);  // initialize array of rows
-			  
+			  //console.log ("A é " + aNumRows + "x" + aNumCols );
+				//console.log("B é " + bNumRows + "x" + bNumCols);
 			  if (aNumCols != bNumRows){
 				  throw new Error("numero de colunas de A != numero de colunas de B, multiplicação impossível");
 			  }
@@ -35,16 +36,16 @@ class Utils{
 		  }
 		  return m;
 	}
-	
+
 	static  exibeMatriz(m) {
 	  for (var r = 0; r < m.length; ++r) {
 		document.write('&nbsp;&nbsp;'+m[r].join(' ')+'<br />');
 	  }
 	}
-	  
+
 	  static exibeMatrizAsTable(matr){
 		  console.log(matr);
-		  	
+
 			//Imprimindo Tabela de Vértices
 			let mTable= "<table border=2>";
 			for (var n=0; n<matr.length; n++){
@@ -58,6 +59,6 @@ class Utils{
 			console.log(mTable);
 			return mTable;
 	  }
-	  
-	 
+
+
 }

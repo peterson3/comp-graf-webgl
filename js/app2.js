@@ -12,12 +12,22 @@ $(document).ready(function(){
 
 	//var info = document.getElementById("info");
 
+	//Definindo uma matriz de projeção XY  (plano Z=0)
+	//var matrizProjXY = [[],[],[],
+	//										[],[],[],
+		//									[],[],[]];
+
+	MATRIZ_TRANSLACAO = [[1,0,1],
+											[0,1,1],
+			  							[0,0,1]];
+
 
 	//var tabelaVertices = document.getElementById("verticeTable");
 	//var tabelaArestas = document.getElementById("arestaTable");
 	//var tabelaFaces = document.getElementById("faceTable");
 	var meuSolido = new Solido();
 	meuSolido.gerarMeuSolido_Estranho();
+
 	//meuSolido.desenhar();
 	//meuSolido.desenhar3d();
 	//$("#info").html(meuSolido.imprimirTabelaGeral());

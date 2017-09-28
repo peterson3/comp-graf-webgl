@@ -9,16 +9,32 @@ class Vertice {
 	//console.log(VERTICE_COUNTER);
 	VERTICE_COUNTER ++;
   }
+
+  /**
+  *Retorna Novo Vertice com as coordenadas homogêneas
+  */
+  getVerticeAsCoordenadasHomogeneas(){
+    let homo_vert = new Vertice(this.x/this.z, this.y/this.z, 1);
+    return homo_vert;
+  }
+
 	getVerticeAsMatrix (){
 		let matriz = [];
 		matriz.push([this.x]);
 		matriz.push([this.y]);
 		matriz.push([this.z]);
-		matriz.push([1]);
+	//	matriz.push([1]);
 		return matriz;
 	}
 
+  setVerticeAsMatrix(m){
+    this.x = m[0][0];
+    this.y = m[1][0];
+    this.z = m[2][0];
+  }
+
 	desenhar() {
+    console.log ("("+this.x + "," + this.y + "," + this.z+ ")");
     let radius = 3;
     context.beginPath();
     context.arc(this.x, this.y, radius, 0, 2 * Math.PI, false);

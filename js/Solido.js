@@ -151,13 +151,24 @@ class Solido{
 	}
 
 	desenhar(){
+
 		for (let i=0; i<this.arestas.length; i++){
-			this.arestas[i].desenhar();
+			/*this.arestas[i].desenhar();*/
+
 		}
 
+		for (let i=0; i<this.vertices.length; i++){
+			this.vertices[i].desenhar_com_numero(i);
+			this.vertices[i].setVerticeAsMatrix(Utils.multiplicaMatriz(MATRIZ_TRANSLACAO, this.vertices[i].getVerticeAsMatrix()));
+			//this.vertices[i].desenhar();
+		}
+
+/*
 		for (let i=0; i<this.faces.length; i++){
 			this.faces[i].desenhar();
-		}
+		}*/
+
+
 	}
 	desenhar3d(){
 		//Desenhando 3D

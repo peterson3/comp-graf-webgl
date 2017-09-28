@@ -12,7 +12,7 @@ class Aresta {
     context.lineTo(this.vertice2.x, this.vertice2.y);
     context.stroke();
   }
-   
+
   desenhar_com_numero(i){
     context.beginPath();
     context.moveTo(this.vertice1.x, this.vertice1.y);
