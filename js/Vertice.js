@@ -17,7 +17,7 @@ class Vertice {
 		matriz.push([1]);
 		return matriz;
 	}
-	
+
 	desenhar() {
     let radius = 3;
     context.beginPath();
@@ -28,8 +28,8 @@ class Vertice {
     context.strokeStyle = '#003300';
     context.stroke();
   }
-  
-  
+
+
   desenhar_com_numero(i){
 	let radius = 5;
     context.beginPath();
@@ -42,7 +42,7 @@ class Vertice {
     context.fillStyle = "black";
 	context.fillText(i, this.x+10, this.y+10);
   }
-  
+
   static saoIguais (vertice1, vertice2){
 	  if ((vertice1.x == vertice2.x) && (vertice1.y == vertice2.y))
 	  {
@@ -52,7 +52,7 @@ class Vertice {
 		  return false;
 	  }
   }
-  
+
   eIgual (vertice){
 	  if ((this.x == vertice.x) && (this.y == vertice.y)){
 		  return true;

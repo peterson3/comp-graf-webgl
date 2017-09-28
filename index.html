@@ -3,8 +3,12 @@
   <head>
     <title>CompGraf - UFF\CompSci </title>
     <meta charset="utf-8">
+    <!--CSS-->
+    <link rel="stylesheet" href="css/bootstrap.css">
     <!--Adicionando Classes na Ordem-->
   <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/popper.js"</script>
+  <script src="js/bootstrap.js"</script>
   <script src="js/Utils.js"></script>
   <script src="js/Vertice.js"></script>
   <script src="js/Aresta.js"></script>
@@ -13,7 +17,8 @@
   <script src="js/app2.js"></script>
 	</head>
 	<body>
-    <h1>GC@UFF/CompSci</h1>
+    <div class="container-fluid">
+    <h1 class="display-4">GC@UFF/CompSci</h1>
 	<div style="width:100%; height:500px;">
   <canvas id="glcanvas" width="400" height="400" style="border-style:solid; float:left;">
     Browser sem suporte ao CANVAS
@@ -26,9 +31,32 @@
   <button id="2d_btn">Desenhar 2d</button>
   <button id="3d_btn">Desenhar 3d</button>
   <button id="Animar">Animar</button>
-  
+
   </div>
   <div id="interact"></div>
   <div id="info"> </div>
+  <div class="row">
+  <div class="col">
+    1 of 3
+  </div>
+  <div class="col-6">
+    2 of 3 (wider)
+  </div>
+  <div class="col">
+    3 of 3
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    1 of 3
+  </div>
+  <div class="col-5">
+    2 of 3 (wider)
+  </div>
+  <div class="col">
+    3 of 3
+  </div>
+</div>
+</div>
 </body>
 </html>

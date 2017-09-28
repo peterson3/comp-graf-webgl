@@ -4,9 +4,8 @@ class Solido{
 		this.arestas = [];
 		this.faces = [];
 	}
-	
-	gerarMeuSolido(){
-	
+
+	gerarMeuSolido_Estranho(){
 	//Gerando Vertices
 	this.vertices.push(new Vertice(0, 0, Utils.getRandomInt(0, 31)));
 	this.vertices.push(new Vertice(100, 100, Utils.getRandomInt(0, 31)));
@@ -62,8 +61,8 @@ class Solido{
 	this.arestas.push(new Aresta(this.vertices[11],this.vertices[15]));
 	this.arestas.push(new Aresta(this.vertices[1],  this.vertices[9]));
 	this.arestas.push(new Aresta(this.vertices[10], this.vertices[1]));
-	
-	
+
+
 	//Definindo Faces
 	this.faces.push (new Face(new Array(this.arestas[20],this.arestas[21],this.arestas[19])));
 	this.faces.push (new Face(new Array(this.arestas[4], this.arestas[29],this.arestas[27], this.arestas[31])));
@@ -84,8 +83,14 @@ class Solido{
 	this.faces.push (new Face(new Array(this.arestas[25],this.arestas[32],this.arestas[23], this.arestas[21])));
 	this.faces.push (new Face(new Array(this.arestas[23],this.arestas[9], this.arestas[16])));
 	this.faces.push (new Face(new Array(this.arestas[15],this.arestas[14],this.arestas[8], this.arestas[16])));
+
 	}
-	
+
+	gerarMeuSolido_Cubo(){
+
+
+	}
+
 	verificarEuler(){
 		if ( 2 == (this.faces.length - this.arestas.length + this.vertices.length) )
 		{
@@ -95,11 +100,11 @@ class Solido{
 			return false;
 		}
 	}
-	
+
 	imprimirTabelaGeral (){
 		//Imprimindo Tabela de Vértices
-		let verticeTable= "<table id='verticeTable' border=1 width=30% style='float: left;'>";
-			
+		let verticeTable= "<table class='table table-sm table-striped table-inverse table-hover' id='verticeTable' border=1 width=30% style='float: left;'>";
+
 		for (let i=0; i<this.vertices.length; i++){
 			// vertices[i].desenhar();
 			//vertices[i].desenhar_com_numero(i);
@@ -110,7 +115,7 @@ class Solido{
 			verticeTable += "</tr>";
 		}
 		verticeTable += "</table>";
-		
+
 		//Imprimindo Tabela de Arestas
 		let arestaTable= "<table id='arestaTable' border=1 width=30% style='float: left;'>";
 		for (let i=0; i<this.arestas.length; i++){
@@ -123,7 +128,7 @@ class Solido{
 			arestaTable += "</tr>";
 		}
 		arestaTable += "</table>";
-		
+
 		//Imprimindo Tabela de Faces
 		let faceTable= "<table id='faceTable' border=1 width=30% style='float: left;'>";
 		for (let j=0; j<this.faces.length; j++){
@@ -139,22 +144,22 @@ class Solido{
 			faceTable += "</td>";
 			faceTable += "</tr>";
 		}
-		
+
 		faceTable += "</table>";
-	
+
 		return verticeTable + arestaTable + faceTable;
 	}
-	
+
 	desenhar(){
 		for (let i=0; i<this.arestas.length; i++){
 			this.arestas[i].desenhar();
 		}
-		
+
 		for (let i=0; i<this.faces.length; i++){
 			this.faces[i].desenhar();
 		}
 	}
-	desenhar3d(){	
+	desenhar3d(){
 		//Desenhando 3D
 		//Definindo vértices projetados em profundidade no Z (simulado)
 		var vertices2 = [];
@@ -162,24 +167,24 @@ class Solido{
 		for (let i=0; i<vertLen; i++){
 		vertices2.push(new Vertice(this.vertices[i].x+50, this.vertices[i].y+50, this.vertices[i].z+50));
 		}
-		
+
 		for (let i=0; i<this.arestas.length; i++){
 				this.arestas[i].desenhar();
 			}
-			
+
 		for (let i=0; i<vertices2.length; i++){
 			vertices2[i].desenhar();
 		}
-		
+
 		var arestasEmZ = []; //Arestas da integração
 		for (let i=0; i<this.vertices.length; i++){
 			arestasEmZ.push(new Aresta(this.vertices[i], vertices2[i]));
 		}
-		
+
 		for (let i=0; i<arestasEmZ.length; i++){
 				arestasEmZ[i].desenhar();
 			}
-			
+
 		var arestasNovas = []; //Arestas no final
 		for (let i=0; i<this.arestas.length; i++){
 				arestasNovas.push(new Aresta
@@ -187,8 +192,8 @@ class Solido{
 					new Vertice(this.arestas[i].vertice2.x+50, this.arestas[i].vertice2.y+50, this.arestas[i].vertice2.z+50)));
 				arestasNovas[i].desenhar();
 			}
-		
-		
+
+
 	}
-	
+
 }
