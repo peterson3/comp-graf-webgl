@@ -15,26 +15,48 @@ class Utils{
 		return Math.floor(Math.random() * (max - min)) + min;
 	}
 
-
+/*
 	static  multiplicaMatriz(a, b) {
 		   var aNumRows = a.length, aNumCols = a[0].length,
-			  bNumRows = b.length, bNumCols = b[0].length,
-			  m = new Array(aNumRows);  // initialize array of rows
+			  bNumRows = b.length, bNumCols = b[0].length;
+			  let m = new Array(aNumRows);  // initialize array of rows
 			  //console.log ("A é " + aNumRows + "x" + aNumCols );
 				//console.log("B é " + bNumRows + "x" + bNumCols);
 			  if (aNumCols != bNumRows){
-				  throw new Error("numero de colunas de A != numero de colunas de B, multiplicação impossível");
+				  throw new Error("numero de colunas de A != numero de linhas de B, multiplicação impossível");
 			  }
-		  for (var r = 0; r < aNumRows; ++r) {
+		  for (let r = 0; r < aNumRows; ++r) {
 			m[r] = new Array(bNumCols); // initialize the current row
-			for (var c = 0; c < bNumCols; ++c) {
+			for (let c = 0; c < bNumCols; ++c) {
 			  m[r][c] = 0;             // initialize the current cell
-			  for (var i = 0; i < aNumCols; ++i) {
-				m[r][c] += a[r][i] * b[i][c];
+			  for (let ind = 0; ind < aNumCols; ++ind) {
+				m[r][c] += a[r][ind] * b[ind][c];
 			  }
 			}
 		  }
 		  return m;
+	}*/
+
+	static  multiplicaMatriz(a,b){
+
+		if (a[0].length != b.length){
+			throw new Error("numero de colunas de A != numero de linhas de B, multiplicação impossível");
+		}
+
+		var c=[];
+				for (let i = 0; i < a.length; i++) {
+			let r = [];
+			for (let j = 0; j < b[0].length; j++) {
+				let s = 0;
+				for (let k = 0; k < b.length; k++) {
+					s += a[i][k] * b[k][j];
+				}
+				r.push(s);
+			}
+			c.push(r);
+			}
+
+			return c;
 	}
 
 	static  exibeMatriz(m) {

@@ -23,9 +23,21 @@ class Vertice {
 		matriz.push([this.x]);
 		matriz.push([this.y]);
 		matriz.push([this.z]);
-	//	matriz.push([1]);
+    matriz.push([1]);
+	  //matriz.push([1]);
 		return matriz;
 	}
+
+  static desenharVertice2d(v){
+      let radius = 3;
+      context.beginPath();
+      context.arc(v.x, v.y, radius, 0, 2 * Math.PI, false);
+      context.fillStyle = "orange";
+      context.fill();
+      context.lineWidth = 1;
+      context.strokeStyle = '#003300';
+      context.stroke();
+  }
 
   setVerticeAsMatrix(m){
     this.x = m[0][0];

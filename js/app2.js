@@ -12,14 +12,12 @@ $(document).ready(function(){
 
 	//var info = document.getElementById("info");
 
-	//Definindo uma matriz de projeção XY  (plano Z=0)
-	//var matrizProjXY = [[],[],[],
-	//										[],[],[],
-		//									[],[],[]];
-
-	MATRIZ_TRANSLACAO = [[1,0,1],
-											[0,1,1],
-			  							[0,0,1]];
+	//Definindo uma matriz de Translação
+	MATRIZ_TRANSLACAO = [
+											[1,0,0,10],
+											[0,1,0,0],
+			  							[0,0,1,0]
+										  ];
 
 
 	//var tabelaVertices = document.getElementById("verticeTable");
