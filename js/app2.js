@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	//Inicialização do Canvas
-	var canvas = document.getElementById("glcanvas");
+	canvas = document.getElementById("glcanvas");
 	context = canvas.getContext("2d");
 	context.fillStyle="#FF0000";
 
@@ -54,18 +54,29 @@ $(document).ready(function(){
 
 
 	function desenhar2d(){
-		limparCanvas();
+		//limparCanvas();
+		var newContext = context;
 		meuSolido.desenhar();
+		context.restore();	
 	}
 
 
 	function desenhar3d(){
+		context.save();
 		limparCanvas();
 		meuSolido.desenhar3d();
 	}
+	
+	function animarSolido(){
+		context.save();
+		limparCanvas();
+		meuSolido.animar();
+	}
+	
 
 	$("#lc_btn").on("click",limparCanvas);
 	$("#pv_btn").on("click",imprimirVerticeMatricial);
 	$("#2d_btn").on("click",desenhar2d);
 	$("#3d_btn").on("click",desenhar3d);
+	$("#animar_btn").on("click", animarSolido);
 });

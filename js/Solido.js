@@ -170,6 +170,21 @@ class Solido{
 
 
 	}
+	
+	
+	async animar(){
+			
+			for (let i=0; i<this.arestas.length; i++){
+			await Utils.sleep(1000);
+			this.arestas[i].desenhar();
+		}
+		
+		for (let i=0; i<this.faces.length; i++){
+			//this.faces[i].desenhar();
+		}
+	}
+	
+	
 	desenhar3d(){
 		//Desenhando 3D
 		//Definindo vértices projetados em profundidade no Z (simulado)

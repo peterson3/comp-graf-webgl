@@ -81,6 +81,11 @@ class Utils{
 			console.log(mTable);
 			return mTable;
 	  }
+	  
+	  
+	  	static sleep(ms) {
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
 
 
 }
