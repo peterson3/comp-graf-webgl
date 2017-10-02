@@ -4,16 +4,18 @@ class Aresta {
     this.vertice2 = vertice2;
 	this.i = ARESTA_COUNTER;
 	ARESTA_COUNTER++;
+	console.log("Aresta Adicionada = E" + this.i + "(V"+this.vertice1.i+",V"+this.vertice2.i +")");
+
   }
 
-  desenhar(){
+	desenhar(){
     context.beginPath();
-    context.moveTo(this.vertice1.x, this.vertice1.y);
-    context.lineTo(this.vertice2.x, this.vertice2.y);
+    context.moveTo(this.vertice1.x*ZOOM, this.vertice1.y*ZOOM);
+    context.lineTo(this.vertice2.x*ZOOM, this.vertice2.y*ZOOM);
     context.stroke();
   }
 
-  desenhar_com_numero(i){
+	desenhar_com_numero(i){
     context.beginPath();
     context.moveTo(this.vertice1.x, this.vertice1.y);
     context.lineTo(this.vertice2.x, this.vertice2.y);

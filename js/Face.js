@@ -6,7 +6,6 @@ class Face {
 		FACE_COUNTER++;
 	}
 	
-	
 	//O desenho vai de 0 a n-1
 	desenhar(){
 		//iniciar "caminho"

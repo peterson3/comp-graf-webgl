@@ -1,76 +1,89 @@
 class Vertice {
   constructor (x, y, z){
-    //this.x = x*3+25;
-    //this.y= y*3+25;
 	this.x = x;
 	this.y = y;
 	this.z = z;
 	this.i = VERTICE_COUNTER;
-	//console.log(VERTICE_COUNTER);
 	VERTICE_COUNTER ++;
+	console.log("Vertice Adicionado = V" + this.i + "("+this.x+","+this.y+","+this.z+")");
   }
 
   /**
-  *Retorna Novo Vertice com as coordenadas homogêneas
+  * Retorna Novo Vertice com as coordenadas homogêneas 2d
   */
-  getVerticeAsCoordenadasHomogeneas(){
+  getVerticeAsCoordenadasHomogeneas2D(){
     let homo_vert = new Vertice(this.x/this.z, this.y/this.z, 1);
     return homo_vert;
   }
 
-	getVerticeAsMatrix (){
+  /**
+  * Retorna Vertice com estrutura de dados em Matriz
+  */
+  getVerticeAsMatrix (){
 		let matriz = [];
 		matriz.push([this.x]);
 		matriz.push([this.y]);
 		matriz.push([this.z]);
-    matriz.push([1]);
+		matriz.push([1]);
 	  //matriz.push([1]);
 		return matriz;
 	}
 
-  static desenharVertice2d(v){
-      let radius = 3;
-      context.beginPath();
-      context.arc(v.x, v.y, radius, 0, 2 * Math.PI, false);
-      context.fillStyle = "orange";
-      context.fill();
-      context.lineWidth = 1;
-      context.strokeStyle = '#003300';
-      context.stroke();
-  }
-
+  /**
+  * Atribui Vertice a partir de uma estrutura de dados em Matriz
+  */
   setVerticeAsMatrix(m){
     this.x = m[0][0];
     this.y = m[1][0];
     this.z = m[2][0];
   }
 
-	desenhar() {
-    console.log ("("+this.x + "," + this.y + "," + this.z+ ")");
-    let radius = 3;
-    context.beginPath();
-    context.arc(this.x, this.y, radius, 0, 2 * Math.PI, false);
-    context.fillStyle = "red";
-    context.fill();
-    context.lineWidth = 1;
-    context.strokeStyle = '#003300';
-    context.stroke();
+  /**
+  * Transforma vértice e desenhar ponto da tela correspondente
+  */
+  desenhar() {
+    console.log ("V"+this.i+ "=("+this.x + "," + this.y + "," + this.z+ ")");
+	this.x /= this.z;
+	this.y /= this.z;
+	this.z = 1;
+    console.log ("V'"+this.i+ "=("+this.x + "," + this.y + "," + this.z + ")");
+	Ponto.desenhar(this.x, this.y);
+  }
+  
+  /**
+  * Transforma vértice a partir de uma Matriz de transformação
+  */
+  transformar(MATRIZ){
+	  //V' = M(t) x V
+	 this.setVerticeAsMatrix(Utils.multiplicaMatriz(MATRIZ, this.getVerticeAsMatrix()));
+	 this.x = Math.round(this.x);
+	 this.y = Math.round(this.y);
+	 this.z = Math.round(this.z);
   }
 
+  /**
+  * Define um método e transformar as coordenadas 3d do ponto em coordenadas 2d para serem desenhadas
+  */
+  transformar3Dpara2D(){
+		
+  }
 
+ /**
+  * Desenha ponto correspondente ao vértice com número sequencial na tela
+  */
   desenhar_com_numero(i){
-	let radius = 5;
-    context.beginPath();
-    context.arc(this.x, this.y, radius, 0, 2 * Math.PI, false);
-    context.fillStyle = "red";
-    context.fill();
-    context.lineWidth = 2;
-    context.strokeStyle = '#003300';
-    context.stroke();
-    context.fillStyle = "black";
-	context.fillText(i, this.x+10, this.y+10);
+	console.log ("V"+this.i+ "=("+this.x + "," + this.y + "," + this.z+ ")");
+	//this.x /= this.z;
+	//this.y /= this.z;
+	//this.z = 1;
+    //console.log ("V'"+this.i+ "=("+this.x + "," + this.y + "," + this.z + ")");
+	let p = new Ponto(this.x, this.y);
+	p.desenhar_com_texto(i);
   }
 
+  /**
+  * Verifica se os dois vértices inseridos são iguais
+  */
   static saoIguais (vertice1, vertice2){
 	  if ((vertice1.x == vertice2.x) && (vertice1.y == vertice2.y))
 	  {
@@ -81,6 +94,9 @@ class Vertice {
 	  }
   }
 
+  /**
+  * Verifica se este objeto é igual ao vértice
+  */
   eIgual (vertice){
 	  if ((this.x == vertice.x) && (this.y == vertice.y)){
 		  return true;
@@ -89,4 +105,14 @@ class Vertice {
 		  return false;
 	  }
   }
+  
+  
+  copiar(){
+	  let v_copiado = new Vertice(this.x, this.y, this.z);
+	  v_copiado.i = this.i;
+	  VERTICE_COUNTER--;
+	  
+  }
 }
+
+

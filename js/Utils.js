@@ -15,28 +15,6 @@ class Utils{
 		return Math.floor(Math.random() * (max - min)) + min;
 	}
 
-/*
-	static  multiplicaMatriz(a, b) {
-		   var aNumRows = a.length, aNumCols = a[0].length,
-			  bNumRows = b.length, bNumCols = b[0].length;
-			  let m = new Array(aNumRows);  // initialize array of rows
-			  //console.log ("A é " + aNumRows + "x" + aNumCols );
-				//console.log("B é " + bNumRows + "x" + bNumCols);
-			  if (aNumCols != bNumRows){
-				  throw new Error("numero de colunas de A != numero de linhas de B, multiplicação impossível");
-			  }
-		  for (let r = 0; r < aNumRows; ++r) {
-			m[r] = new Array(bNumCols); // initialize the current row
-			for (let c = 0; c < bNumCols; ++c) {
-			  m[r][c] = 0;             // initialize the current cell
-			  for (let ind = 0; ind < aNumCols; ++ind) {
-				m[r][c] += a[r][ind] * b[ind][c];
-			  }
-			}
-		  }
-		  return m;
-	}*/
-
 	static  multiplicaMatriz(a,b){
 
 		if (a[0].length != b.length){
@@ -65,7 +43,7 @@ class Utils{
 	  }
 	}
 
-	  static exibeMatrizAsTable(matr){
+	static exibeMatrizAsTable(matr){
 		  console.log(matr);
 
 			//Imprimindo Tabela de Vértices
@@ -82,10 +60,15 @@ class Utils{
 			return mTable;
 	  }
 	  
-	  
-	  	static sleep(ms) {
+	static sleep(ms) {
 		return new Promise(resolve => setTimeout(resolve, ms));
 	}
 
-
+	static GrausParaRadianos(graus){
+		return graus*(Math.PI/180);
+	}
+	
+	static RadianosParaGraus(radianos){
+		return radianos * (180/Math.PI);;
+	}
 }

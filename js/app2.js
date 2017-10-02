@@ -5,6 +5,14 @@ $(document).ready(function(){
 	context = canvas.getContext("2d");
 	context.fillStyle="#FF0000";
 
+	//
+	CANVAS_X_MIN = 0;
+	CANVAS_X_MAX = canvas.width;
+	CANVAS_Y_MIN = 0;
+	CANVAS_Y_MAX = canvas.height;
+	//Escalando os pontos no canvas
+	ZOOM = 1;
+	
 	//"STATICS" variables
 	VERTICE_COUNTER = 0;
 	ARESTA_COUNTER = 0;
@@ -14,18 +22,60 @@ $(document).ready(function(){
 
 	//Definindo uma matriz de Translação
 	MATRIZ_TRANSLACAO = [
-											[1,0,0,10],
-											[0,1,0,0],
-			  							[0,0,1,0]
-										  ];
+						[1, 0, 0, 10],
+						[0, 1, 0, 0],
+						[0, 0, 1, 0],
+						[0, 0, 0, 1]
+						];
 
+	let sx = 10;
+	let sy = 10;
+	let sz = 10;
+	MATRIZ_ESCALA = [
+		[sx, 0, 0, 0],
+		[0, sy, 0, 0],
+		[0, 0, sz, 0],
+		[0, 0, 0, 1]
+	];
+
+	MATRIZ_PROJ_Z0 = [
+			[1, 0, 0, 0],
+			[0, 1, 0, 0],
+			[0, 0, 0, 0],
+			[0, 0, 0, 1]
+		];
+		
+	let ang = 45; //45 graus
+	let rad_ang = Utils.GrausParaRadianos(ang);
+	
+	MATRIZ_ROT_X = [
+			[1, 0, 0, 0],
+			[0, Math.cos(rad_ang), -1*Math.sin(rad_ang), 0],
+			[0, Math.sin(rad_ang), Math.cos(rad_ang), 0],
+			[0, 0, 0, 1]
+		];
+
+	MATRIZ_ROT_Y = [
+			[Math.cos(rad_ang), 0, Math.sin(rad_ang), 0],
+			[0,1, 0, 0],
+			[-1*(Math.sin(rad_ang)),0, Math.cos(rad_ang), 0],
+			[0, 0, 0, 1]
+		];
+		
+		
+	MATRIZ_ROT_Z = [
+			[Math.cos(rad_ang), -1*(Math.sin(rad_ang)), 0, 0],
+			[Math.sin(rad_ang),Math.cos(rad_ang), 0, 0],
+			[0,0, 1, 0],
+			[0, 0, 0, 1]
+		];
 
 	//var tabelaVertices = document.getElementById("verticeTable");
 	//var tabelaArestas = document.getElementById("arestaTable");
 	//var tabelaFaces = document.getElementById("faceTable");
 	var meuSolido = new Solido();
-	meuSolido.gerarMeuSolido_Estranho();
-
+	//meuSolido.gerarMeuSolido_Estranho();
+	meuSolido.gerarMeuSolido_Cubo();
 	//meuSolido.desenhar();
 	//meuSolido.desenhar3d();
 	//$("#info").html(meuSolido.imprimirTabelaGeral());
@@ -52,31 +102,63 @@ $(document).ready(function(){
 
 	}
 
-
 	function desenhar2d(){
 		//limparCanvas();
 		var newContext = context;
 		meuSolido.desenhar();
-		context.restore();	
+		context.restore();
 	}
-
 
 	function desenhar3d(){
 		context.save();
 		limparCanvas();
 		meuSolido.desenhar3d();
 	}
-	
+
 	function animarSolido(){
 		context.save();
 		limparCanvas();
 		meuSolido.animar();
 	}
 	
+	function func1(){
+		meuSolido.transformar(MATRIZ_TRANSLACAO);
+	}
+	
+	function func2(){
+		meuSolido.transformar(MATRIZ_ESCALA);
+	}
+	
+	function func3(){
+		meuSolido.transformar(MATRIZ_ROT_X);
+	}
+	
+	function func4(){
+		meuSolido.transformar(MATRIZ_ROT_Y);
+	}
+	
+	function func5(){
+		meuSolido.transformar(MATRIZ_ROT_Z);
+	}
+	
+	function func6(){
+		limparCanvas();
+		meuSolido = new Solido();
+		meuSolido.gerarMeuSolido_Cubo();
+	}
 
+	//Atribuindo Funcionalidades ao botões
 	$("#lc_btn").on("click",limparCanvas);
 	$("#pv_btn").on("click",imprimirVerticeMatricial);
 	$("#2d_btn").on("click",desenhar2d);
 	$("#3d_btn").on("click",desenhar3d);
 	$("#animar_btn").on("click", animarSolido);
+	
+	$("#1_btn").on("click", func1);
+	$("#2_btn").on("click", func2);
+	$("#3_btn").on("click", func3);
+	$("#4_btn").on("click", func4);
+	$("#5_btn").on("click", func5);
+	$("#6_btn").on("click", func6);
+
 });

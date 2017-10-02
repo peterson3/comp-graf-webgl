@@ -87,6 +87,31 @@ class Solido{
 	}
 
 	gerarMeuSolido_Cubo(){
+		this.vertices.push(new Vertice(50, 50, 50));
+		this.vertices.push(new Vertice(100, 50, 50));
+		this.vertices.push(new Vertice(50, 100, 50));
+		this.vertices.push(new Vertice(100, 100, 50));
+
+		this.vertices.push(new Vertice(50, 50, 100));
+		this.vertices.push(new Vertice(100, 50, 100));
+		this.vertices.push(new Vertice(50, 100, 100));
+		this.vertices.push(new Vertice(100, 100, 100));
+
+	this.arestas.push(new Aresta(this.vertices[0], this.vertices[1]));
+	this.arestas.push(new Aresta(this.vertices[0], this.vertices[2]));
+	this.arestas.push(new Aresta(this.vertices[1], this.vertices[3]));
+	this.arestas.push(new Aresta(this.vertices[2], this.vertices[3]));
+
+	this.arestas.push(new Aresta(this.vertices[4], this.vertices[5]));
+	this.arestas.push(new Aresta(this.vertices[4], this.vertices[6]));
+	this.arestas.push(new Aresta(this.vertices[5], this.vertices[7]));
+	this.arestas.push(new Aresta(this.vertices[6], this.vertices[7]));
+
+	this.arestas.push(new Aresta(this.vertices[0], this.vertices[4]));
+	this.arestas.push(new Aresta(this.vertices[1], this.vertices[5]));
+	this.arestas.push(new Aresta(this.vertices[2], this.vertices[6]));
+	this.arestas.push(new Aresta(this.vertices[3], this.vertices[7]));
+
 
 
 	}
@@ -158,8 +183,16 @@ class Solido{
 		}
 
 		for (let i=0; i<this.vertices.length; i++){
-			this.vertices[i].desenhar_com_numero(i);
-			this.vertices[i].setVerticeAsMatrix(Utils.multiplicaMatriz(MATRIZ_TRANSLACAO, this.vertices[i].getVerticeAsMatrix()));
+		 //Definir um vértice temporario
+		 let vTemp = new Vertice(this.vertices[i].x, this.vertices[i].y, this.vertices[i].z);
+		 //Fazer as operacoes com o vertice
+		 vTemp.x = vTemp.x+vTemp.z;
+		 vTemp.y = vTemp.y+vTemp.z;
+		 vTemp.desenhar();
+
+
+			//this.vertices[i].desenhar();
+			//this.vertices[i].setVerticeAsMatrix(Utils.multiplicaMatriz(MATRIZ_TRANSLACAO, this.vertices[i].getVerticeAsMatrix()));
 			//this.vertices[i].desenhar();
 		}
 
@@ -170,21 +203,32 @@ class Solido{
 
 
 	}
-	
-	
+
 	async animar(){
-			
-			for (let i=0; i<this.arestas.length; i++){
-			await Utils.sleep(1000);
-			this.arestas[i].desenhar();
+
+		for (let i=0; i<this.vertices.length; i++){
+		//await Utils.sleep(300);
+		//this.vertices[i].desenhar_com_numero(i);
+		this.vertices[i].desenhar_com_numero(i);
+		//this.vertices[i].x = this.vertices[i].x/this.vertices[i].z;
+		//this.vertices[i].y = this.vertices[i].y/this.vertices[i].z;
+		//this.vertices[i].desenhar_com_numero(i);
+
 		}
-		
+
+			for (let i=0; i<this.arestas.length; i++){
+			//await Utils.sleep(1000);
+			this.arestas[i].desenhar();
+			}
+
+/*
 		for (let i=0; i<this.faces.length; i++){
 			//this.faces[i].desenhar();
 		}
+		*/
+
 	}
-	
-	
+
 	desenhar3d(){
 		//Desenhando 3D
 		//Definindo vértices projetados em profundidade no Z (simulado)
@@ -222,4 +266,13 @@ class Solido{
 
 	}
 
+	transformar(matriz_transf){
+		//var vertices_transf;
+		//for (let i=0; i< this.vertices.length; i++){
+		//	this.vertices[i].vert
+		//}
+		for (let i=0; i< this.vertices.length; i++){
+			this.vertices[i].transformar(matriz_transf);
+		}		
+	}
 }
