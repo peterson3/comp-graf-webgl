@@ -275,4 +275,20 @@ class Solido{
 			this.vertices[i].transformar(matriz_transf);
 		}		
 	}
+	
+	getVerticeCentro(){
+		let xSum = this.vertices[0].x;
+		let ySum = this.vertices[0].y;
+		let zSum = this.vertices[0].z;
+		let qtd_vertices = this.vertices[i].length;
+		
+		for (let i=1; i<qtd_vertices; i++){
+			xSum += this.vertices[i].x;
+			ySum += this.vertices[i].y;
+			zSum += this.vertices[i].z;
+		}
+		
+		
+		return new Vertice(xSum/qtd_vertices, ySum/qtd_vertices, zSum/qtd_vertices);
+	}
 }

@@ -12,7 +12,7 @@ $(document).ready(function(){
 	CANVAS_Y_MIN = 0;
 	CANVAS_Y_MAX = canvas.height;
 	//Escalando os pontos no canvas
-	ZOOM = 2;
+	ZOOM = 1;
 
 	//"STATICS" variables
 	VERTICE_COUNTER = 0;
@@ -111,7 +111,6 @@ $(document).ready(function(){
 	}
 
 	function desenhar3d(){
-		context.save();
 		limparCanvas();
 		meuSolido.desenhar3d();
 	}

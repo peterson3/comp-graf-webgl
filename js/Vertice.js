@@ -49,7 +49,7 @@ class Vertice {
     console.log ("V'"+this.i+ "=("+this.x + "," + this.y + "," + this.z + ")");
 	Ponto.desenhar(this.x, this.y);
   }
-  
+
   /**
   * Transforma vértice a partir de uma Matriz de transformação
   */
@@ -65,7 +65,7 @@ class Vertice {
   * Define um método e transformar as coordenadas 3d do ponto em coordenadas 2d para serem desenhadas
   */
   transformar3Dpara2D(){
-		
+
   }
 
  /**
@@ -105,14 +105,12 @@ class Vertice {
 		  return false;
 	  }
   }
-  
-  
+
+
   copiar(){
 	  let v_copiado = new Vertice(this.x, this.y, this.z);
 	  v_copiado.i = this.i;
 	  VERTICE_COUNTER--;
-	  
+
   }
 }
-
-
