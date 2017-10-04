@@ -3,6 +3,7 @@ $(document).ready(function(){
 	//Inicialização do Canvas
 	canvas = document.getElementById("glcanvas");
 	context = canvas.getContext("2d");
+	context.translate(canvas.width/2, canvas.height/2); //movendo o centro do eixo para o centro do elemento
 	context.fillStyle="#FF0000";
 
 	//
@@ -11,7 +12,7 @@ $(document).ready(function(){
 	CANVAS_Y_MIN = 0;
 	CANVAS_Y_MAX = canvas.height;
 	//Escalando os pontos no canvas
-	ZOOM = 1;
+	ZOOM = 2;
 
 	//"STATICS" variables
 	VERTICE_COUNTER = 0;
@@ -74,8 +75,8 @@ $(document).ready(function(){
 	//var tabelaArestas = document.getElementById("arestaTable");
 	//var tabelaFaces = document.getElementById("faceTable");
 	var meuSolido = new Solido();
-	meuSolido.gerarMeuSolido_Estranho();
-	//meuSolido.gerarMeuSolido_Cubo();
+	//meuSolido.gerarMeuSolido_Estranho();
+	meuSolido.gerarMeuSolido_Cubo();
 	//meuSolido.desenhar();
 	//meuSolido.desenhar3d();
 	//$("#info").html(meuSolido.imprimirTabelaGeral());
@@ -116,7 +117,6 @@ $(document).ready(function(){
 	}
 
 	function animarSolido(){
-		context.save();
 		limparCanvas();
 		meuSolido.animar();
 	}
