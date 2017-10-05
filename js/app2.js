@@ -12,7 +12,7 @@ $(document).ready(function(){
 	CANVAS_Y_MIN = 0;
 	CANVAS_Y_MAX = canvas.height;
 	//Escalando os pontos no canvas
-	ZOOM = 1;
+	ZOOM = 50;
 
 	//"STATICS" variables
 	VERTICE_COUNTER = 0;
@@ -29,9 +29,9 @@ $(document).ready(function(){
 						[0, 0, 0, 1]
 						];
 
-	let sx = 10;
-	let sy = 10;
-	let sz = 10;
+	let sx = 2;
+	let sy = 2;
+	let sz = 2;
 	MATRIZ_ESCALA = [
 		[sx, 0, 0, 0],
 		[0, sy, 0, 0],
@@ -45,6 +45,15 @@ $(document).ready(function(){
 			[0, 0, 0, 0],
 			[0, 0, 0, 1]
 		];
+		
+		Zcp = 1; //Z centro de projecao
+	MATRIZ_PROJ_PERSP_Z0 = [
+			[1, 0, 0, 0],
+			[0, 1, 0, 0],
+			[0, 0, 0, -1/Zcp],
+			[0, 0, 0, 1]
+		];
+		
 
 	let ang = 45; //45 graus
 	let rad_ang = Utils.GrausParaRadianos(ang);
@@ -81,10 +90,15 @@ $(document).ready(function(){
 	//meuSolido.desenhar3d();
 	//$("#info").html(meuSolido.imprimirTabelaGeral());
 
+	//let centroide = meuSolido.getVerticeCentro();
+	//console.log("CENTROIDE: (" + centroide.x + "," + centroide.y + "," + centroide.z + ")");
 
 	function limparCanvas(){
 		var canvas = document.getElementById("glcanvas");
+		
+		context.translate(-canvas.width/2, -canvas.height/2);
 		context.clearRect(0, 0, canvas.width, canvas.height);
+		context.translate(canvas.width/2, canvas.height/2);
 	}
 
 	function imprimirVerticeMatricial(){
@@ -145,6 +159,32 @@ $(document).ready(function(){
 		meuSolido = new Solido();
 		meuSolido.gerarMeuSolido_Cubo();
 	}
+	
+	function func7(){
+		//meuSolido.transformar(MATRIZ_PROJ_PERSP_Z0);
+		//Transladar para o centro
+		let centroide = meuSolido.getVerticeCentro();
+		//Montando matriz de translação de acordo com o centroide
+	MATRIZ_TRANSLACAO_CENTRO = [
+			[1, 0, 0, -1*(centroide.x)],
+			[0, 1, 0, -1*(centroide.y)],
+			[0, 0, 1, -1*(centroide.z)],
+			[0, 0, 0, 1]
+		];
+		meuSolido.transformar(MATRIZ_TRANSLACAO_CENTRO);
+		
+	}
+	
+	
+	function func8(){	
+	let d = 5;
+		let qtd = meuSolido.vertices.length;
+		for (let i=0; i<qtd; i++){
+			meuSolido.vertices[i].x = -1*d*meuSolido.vertices[i].x/meuSolido.vertices[i].z
+			meuSolido.vertices[i].y = -1*d*meuSolido.vertices[i].y/meuSolido.vertices[i].z
+			meuSolido.vertices[i].z =1;
+		}
+	}
 
 	$('#exampleModal').on('shown.bs.modal', function () {
   $('#myInput').focus()
@@ -163,5 +203,7 @@ $(document).ready(function(){
 	$("#4_btn").on("click", func4);
 	$("#5_btn").on("click", func5);
 	$("#6_btn").on("click", func6);
+	$("#7_btn").on("click", func7);
+	$("#8_btn").on("click", func8);
 
 });

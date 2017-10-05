@@ -43,9 +43,9 @@ class Vertice {
   */
   desenhar() {
     console.log ("V"+this.i+ "=("+this.x + "," + this.y + "," + this.z+ ")");
-	this.x /= this.z;
-	this.y /= this.z;
-	this.z = 1;
+	//this.x /= this.z;
+	//this.y /= this.z;
+	//this.z = 1;
     console.log ("V'"+this.i+ "=("+this.x + "," + this.y + "," + this.z + ")");
 	Ponto.desenhar(this.x, this.y);
   }

@@ -280,7 +280,7 @@ class Solido{
 		let xSum = this.vertices[0].x;
 		let ySum = this.vertices[0].y;
 		let zSum = this.vertices[0].z;
-		let qtd_vertices = this.vertices[i].length;
+		let qtd_vertices = this.vertices.length;
 		
 		for (let i=1; i<qtd_vertices; i++){
 			xSum += this.vertices[i].x;
