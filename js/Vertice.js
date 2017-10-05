@@ -3,6 +3,7 @@ class Vertice {
 	this.x = x;
 	this.y = y;
 	this.z = z;
+	this.w = 1;
 	this.i = VERTICE_COUNTER;
 	VERTICE_COUNTER ++;
 	console.log("Vertice Adicionado = V" + this.i + "("+this.x+","+this.y+","+this.z+")");
@@ -24,10 +25,18 @@ class Vertice {
 		matriz.push([this.x]);
 		matriz.push([this.y]);
 		matriz.push([this.z]);
-		matriz.push([1]);
+		matriz.push([this.w]);
 	  //matriz.push([1]);
 		return matriz;
 	}
+	
+	
+	homogen(){
+		this.x /= this.w;
+		this.y /= this.w;
+		this.z /= this.w;
+	}
+	
 
   /**
   * Atribui Vertice a partir de uma estrutura de dados em Matriz
@@ -36,6 +45,7 @@ class Vertice {
     this.x = m[0][0];
     this.y = m[1][0];
     this.z = m[2][0];
+	this.w = m[3][0];
   }
 
   /**

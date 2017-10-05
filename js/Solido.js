@@ -112,9 +112,27 @@ class Solido{
 	this.arestas.push(new Aresta(this.vertices[2], this.vertices[6]));
 	this.arestas.push(new Aresta(this.vertices[3], this.vertices[7]));
 
-
-
+	//Faces
+	this.faces.push (new Face(new Array(this.arestas[4],this.arestas[5],this.arestas[7], this.arestas[6])));
+	
+	
+	this.faces.push (new Face(new Array(this.arestas[6],this.arestas[9],this.arestas[2], this.arestas[11])));
+	this.faces.push (new Face(new Array(this.arestas[10],this.arestas[7],this.arestas[11], this.arestas[3])));
+	
+	
+	
+	this.faces.push (new Face(new Array(this.arestas[2],this.arestas[11],this.arestas[6], this.arestas[9])));
+	
+	//Face lateral esq
+	this.faces.push (new Face(new Array(this.arestas[5],this.arestas[8],this.arestas[1], this.arestas[10])));
+	
+	//Face de cima
+	this.faces.push (new Face(new Array(this.arestas[8],this.arestas[0],this.arestas[9], this.arestas[4])));
+	
+	//Face da Frente
+	this.faces.push (new Face(new Array(this.arestas[0],this.arestas[1],this.arestas[3], this.arestas[2])));
 	}
+		
 
 	verificarEuler(){
 		if ( 2 == (this.faces.length - this.arestas.length + this.vertices.length) )
@@ -218,14 +236,14 @@ class Solido{
 
 			for (let i=0; i<this.arestas.length; i++){
 			//await Utils.sleep(1000);
-			this.arestas[i].desenhar();
+			this.arestas[i].desenhar_com_numero();
 			}
 
-/*
+		
 		for (let i=0; i<this.faces.length; i++){
-			//this.faces[i].desenhar();
+			this.faces[i].desenhar();
 		}
-		*/
+		
 
 	}
 

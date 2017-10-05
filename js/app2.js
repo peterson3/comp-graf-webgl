@@ -12,7 +12,7 @@ $(document).ready(function(){
 	CANVAS_Y_MIN = 0;
 	CANVAS_Y_MAX = canvas.height;
 	//Escalando os pontos no canvas
-	ZOOM = 50;
+	ZOOM = 1;
 
 	//"STATICS" variables
 	VERTICE_COUNTER = 0;
@@ -177,13 +177,24 @@ $(document).ready(function(){
 	
 	
 	function func8(){	
-	let d = 5;
+	limparCanvas();
+		let d = 2; // d pt de fuga
+		
+			let MATRIZ_PROJ_PERSP_TST = [
+			[1, 0, 0, 0],
+			[0, 1, 0, 0],
+			[0, 0, 1, 0],
+			[0, 0, 1/d, 0]
+		];
+		
+		//Homogeneizar os vértices
+		meuSolido.transformar(MATRIZ_PROJ_PERSP_TST)
 		let qtd = meuSolido.vertices.length;
 		for (let i=0; i<qtd; i++){
-			meuSolido.vertices[i].x = -1*d*meuSolido.vertices[i].x/meuSolido.vertices[i].z
-			meuSolido.vertices[i].y = -1*d*meuSolido.vertices[i].y/meuSolido.vertices[i].z
-			meuSolido.vertices[i].z =1;
-		}
+			meuSolido.vertices[i].homogen();
+		 }
+		
+		meuSolido.animar();
 	}
 
 	$('#exampleModal').on('shown.bs.modal', function () {

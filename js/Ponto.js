@@ -28,7 +28,7 @@ class Ponto {
   }
   
   desenhar_com_texto(texto){
-	let radius = 5;
+	let radius = 1;
     context.beginPath();
     context.arc(this.x*ZOOM, this.y*ZOOM, radius, 0, 2 * Math.PI, false);
     context.fillStyle = "red";

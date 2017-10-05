@@ -15,13 +15,13 @@ class Aresta {
     context.stroke();
   }
 
-	desenhar_com_numero(i){
+	desenhar_com_numero(){
     context.beginPath();
     context.moveTo(this.vertice1.x, this.vertice1.y);
     context.lineTo(this.vertice2.x, this.vertice2.y);
     context.stroke();
-	context.fillStyle = "black";
-	context.fillText(i, (this.vertice1.x + this.vertice2.x)/2, (this.vertice1.y+this.vertice2.y)/2);
+	context.fillStyle = "green";
+	context.fillText(this.i, (this.vertice1.x + this.vertice2.x)/2, (this.vertice1.y+this.vertice2.y)/2);
   }
 
 	//Retorna o Vertice Intersecao entre duas arestas
