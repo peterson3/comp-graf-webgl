@@ -136,22 +136,27 @@ $(document).ready(function(){
 
 	function func1(){
 		meuSolido.transformar(MATRIZ_TRANSLACAO);
+		animarSolido();
 	}
 
 	function func2(){
 		meuSolido.transformar(MATRIZ_ESCALA);
+		animarSolido();
 	}
 
 	function func3(){
 		meuSolido.transformar(MATRIZ_ROT_X);
+		animarSolido();
 	}
 
 	function func4(){
 		meuSolido.transformar(MATRIZ_ROT_Y);
+		animarSolido();
 	}
 
 	function func5(){
 		meuSolido.transformar(MATRIZ_ROT_Z);
+		animarSolido();
 	}
 
 	function func6(){
@@ -172,7 +177,7 @@ $(document).ready(function(){
 			[0, 0, 0, 1]
 		];
 		meuSolido.transformar(MATRIZ_TRANSLACAO_CENTRO);
-		
+		animarSolido();
 	}
 	
 	
