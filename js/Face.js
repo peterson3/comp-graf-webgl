@@ -4,6 +4,7 @@ class Face {
 		this.arestas = vec;
 		this.i = FACE_COUNTER;
 		FACE_COUNTER++;
+		this.color = Utils.getRandomColor();
 	}
 	
 	//O desenho vai de 0 a n-1
@@ -45,7 +46,7 @@ class Face {
 		if (this.arestas == null){
 			console.log ("vetor arestas nulo");
 		}
-		if (qtdArestas > 3){
+		if (qtdArestas < 3){
 			console.log("não pode desenhar uma face com menos de 3 arestas");
 		}
 		
@@ -71,7 +72,7 @@ class Face {
 		//randomColor
 		// the fill color
 		//context.fillStyle = "red";
-		context.fillStyle = Utils.getRandomColor();
+		context.fillStyle = this.color;
 		context.fill();
 
 	}
@@ -101,6 +102,31 @@ class Face {
 		}
 		
 		context.lineTo(p_final.x, p_final.y);
-	}
+	}	
 	
+	getCentroide(){
+		let qtdArestas = this.arestas.length;
+		let x = 0;
+		let y =0;
+		let z= 0;
+		for (let i=0; i<qtdArestas; i++){
+			let verticeCentro = this.arestas[i].getVerticeCentro();
+			x+= verticeCentro.x;
+			y+= verticeCentro.y;
+			z+= verticeCentro.z;
+		}
+	
+		x /= i;
+		y /= i;
+		z /= i;
+		
+		return new Vertice(x,y,z);
+	}
+
+	getVetorNormal(){
+		//Para cada um das Arestas da Face
+			//Recuperar os Vértices da aresta
+			//Para cada um dos vértices da aresta
+			//Cálcular a normal do conjunto de Vértices	
+	}
 }

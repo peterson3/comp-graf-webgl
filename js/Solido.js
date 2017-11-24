@@ -86,6 +86,93 @@ class Solido{
 
 	}
 
+	gerarMeuSolido_batmerang(){
+		//Meu Sólido 17 vértices
+		this.vertices.push(new Vertice(8, 0, 0));
+		this.vertices.push(new Vertice(9, 3, 0));
+		this.vertices.push(new Vertice(11, 2.5, 0));
+		this.vertices.push(new Vertice(18, 6, 0));
+		this.vertices.push(new Vertice(11, 6, 0));
+		this.vertices.push(new Vertice(10, 5, 0));
+		this.vertices.push(new Vertice(9, 5, 0));
+		this.vertices.push(new Vertice(9, 6.9, 0));
+		this.vertices.push(new Vertice(8.4, 6, 0));
+		this.vertices.push(new Vertice(7.6, 6, 0));
+		this.vertices.push(new Vertice(7, 6.9, 0));
+		this.vertices.push(new Vertice(7, 5, 0));
+		this.vertices.push(new Vertice(6, 5, 0));
+		this.vertices.push(new Vertice(5, 6, 0));
+		this.vertices.push(new Vertice(-2, 6, 0));
+		this.vertices.push(new Vertice(5, 2.5, 0));
+		this.vertices.push(new Vertice(7, 3, 0));
+
+		for (let i=0; i<this.vertices.length; i++){
+			this.vertices[i].x *= -10
+			this.vertices[i].y *= -10
+		}
+
+		//Arestas 2d
+		for (let i=0; i<this.vertices.length; i++){
+			if (i+1 == this.vertices.length){
+				this.arestas.push(new Aresta(this.vertices[i], this.vertices[0]));		
+			}
+			else{
+				this.arestas.push(new Aresta(this.vertices[i], this.vertices[i+1]));		
+			}
+		}
+
+		//Adicionando Vértices Atrás
+		let qtdVerticesAntes = this.vertices.length;
+		for (let i=0; i<qtdVerticesAntes; i++){
+			this.vertices.push(new Vertice(this.vertices[i].x, this.vertices[i].y, this.vertices[i].z+30));			
+		}		
+
+
+		//Adicionando Arestas entre os vértices recém adicionados
+		/*for (let i=qtdVerticesAntes-1; i<this.vertices.length; i++){
+			if (i+1 == this.vertices.length){
+				console.log("Adicionando Aresta entre os Vértices " + i + " e " + (qtdVerticesAntes-1));
+				//this.arestas.push(new Aresta(this.vertices[i], this.vertices[qtdVerticesAntes]));		
+			}
+			else{
+				console.log("Adicionando Aresta entre os Vértices " + i + " e " + (i+1));
+				//this.arestas.push(new Aresta(this.vertices[i], this.vertices[i+1]));		
+			}			
+		}*/
+		for (let i=17; i<33; i++){
+						console.log("Adicionando Aresta entre " + i + " e " + (i+1));
+			this.arestas.push(new Aresta(this.vertices[i], this.vertices[i+1]));
+		}
+this.arestas.push(new Aresta(this.vertices[33], this.vertices[17]));
+
+		//Adicionando Arestas Entre o plano da Frente e o plano de Trás
+		let qtdArestasASeremCriadas = this.vertices.length/2;
+		for (let i=0; i<qtdArestasASeremCriadas; i++){
+			console.log("Adicionando Aresta entre " + i + " e " + (i+qtdArestasASeremCriadas));
+			this.arestas.push(new Aresta(this.vertices[i], this.vertices[i+qtdArestasASeremCriadas]));			
+		}
+
+		console.log("qtd_vertices " + this.vertices.length);				 		
+		
+	}
+
+	desenharVertices (){
+
+		for (let i=0; i<this.vertices.length; i++){
+		 //Definir um vértice temporario
+		 let vTemp = new Vertice(this.vertices[i].x, this.vertices[i].y, this.vertices[i].z);
+		 //Fazer as operacoes com o vertice
+		 vTemp.desenhar();
+		}
+	}
+
+	desenharArestas(){
+	for (let i=0; i<this.arestas.length; i++){
+		 //Definir um vértice temporario
+		  this.arestas[i].desenhar();
+		}	
+	}
+
 	gerarMeuSolido_Cubo(){
 		this.vertices.push(new Vertice(50, 50, 50));
 		this.vertices.push(new Vertice(100, 50, 50));
@@ -114,23 +201,16 @@ class Solido{
 
 	//Faces
 	this.faces.push (new Face(new Array(this.arestas[4],this.arestas[5],this.arestas[7], this.arestas[6])));
-	
-	
 	this.faces.push (new Face(new Array(this.arestas[6],this.arestas[9],this.arestas[2], this.arestas[11])));
 	this.faces.push (new Face(new Array(this.arestas[10],this.arestas[7],this.arestas[11], this.arestas[3])));
-	
-	
-	
 	this.faces.push (new Face(new Array(this.arestas[2],this.arestas[11],this.arestas[6], this.arestas[9])));
-	
 	//Face lateral esq
 	this.faces.push (new Face(new Array(this.arestas[5],this.arestas[8],this.arestas[1], this.arestas[10])));
-	
 	//Face de cima
 	this.faces.push (new Face(new Array(this.arestas[8],this.arestas[0],this.arestas[9], this.arestas[4])));
-	
 	//Face da Frente
 	this.faces.push (new Face(new Array(this.arestas[0],this.arestas[1],this.arestas[3], this.arestas[2])));
+	
 	}
 		
 
@@ -195,23 +275,35 @@ class Solido{
 
 	desenhar(){
 
-		for (let i=0; i<this.arestas.length; i++){
-			/*this.arestas[i].desenhar();*/
-
-		}
+		//console.log ("Arestas Antes do Sort");
+		//console.table(this.arestas);
+		//this.arestas.sort(Utils.compararProfundidadeFace());
+		//console.log ("Arestas Depois do Sort");
+		//cocnsole.table(this.arestas);
+		
+		//Prejetando Perspective Teste
+		let distancia = 50;
 
 		for (let i=0; i<this.vertices.length; i++){
 		 //Definir um vértice temporario
-		 let vTemp = new Vertice(this.vertices[i].x, this.vertices[i].y, this.vertices[i].z);
+		 //let vTemp = new Vertice(this.vertices[i].x, this.vertices[i].y, this.vertices[i].z);
+		 if (this.vertices[i].z != 0){
+		 this.vertices[i].x = (distancia / this.vertices[i].z ) * this.vertices[i].x;
+		 this.vertices[i].y = (distancia / this.vertices[i].z ) * this.vertices[i].y;	
+		 }
 		 //Fazer as operacoes com o vertice
-		 vTemp.x = vTemp.x+vTemp.z;
-		 vTemp.y = vTemp.y+vTemp.z;
-		 vTemp.desenhar();
+	//	 vTemp.x = vTemp.x+vTemp.z;
+	//	 vTemp.y = vTemp.y+vTemp.z;
+	//	 vTemp.desenhar();
 
 
 			//this.vertices[i].desenhar();
 			//this.vertices[i].setVerticeAsMatrix(Utils.multiplicaMatriz(MATRIZ_TRANSLACAO, this.vertices[i].getVerticeAsMatrix()));
 			//this.vertices[i].desenhar();
+		}
+
+			for (let i=0; i<this.arestas.length; i++){
+			this.arestas[i].desenhar();
 		}
 
 /*
@@ -226,8 +318,8 @@ class Solido{
 
 		for (let i=0; i<this.vertices.length; i++){
 		//await Utils.sleep(300);
+		this.vertices[i].desenhar(i);
 		//this.vertices[i].desenhar_com_numero(i);
-		this.vertices[i].desenhar_com_numero(i);
 		//this.vertices[i].x = this.vertices[i].x/this.vertices[i].z;
 		//this.vertices[i].y = this.vertices[i].y/this.vertices[i].z;
 		//this.vertices[i].desenhar_com_numero(i);
@@ -253,7 +345,7 @@ class Solido{
 		var vertices2 = [];
 		var vertLen = this.vertices.length;
 		for (let i=0; i<vertLen; i++){
-		vertices2.push(new Vertice(this.vertices[i].x+50, this.vertices[i].y+50, this.vertices[i].z+50));
+			vertices2.push(new Vertice(this.vertices[i].x+50, this.vertices[i].y+50, this.vertices[i].z+50));
 		}
 
 		for (let i=0; i<this.arestas.length; i++){

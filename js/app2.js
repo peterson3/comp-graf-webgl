@@ -85,8 +85,11 @@ $(document).ready(function(){
 	//var tabelaFaces = document.getElementById("faceTable");
 	var meuSolido = new Solido();
 	//meuSolido.gerarMeuSolido_Estranho();
-	meuSolido.gerarMeuSolido_Cubo();
-	//meuSolido.desenhar();
+	//meuSolido.gerarMeuSolido_Cubo();
+	meuSolido.gerarMeuSolido_batmerang();
+	//meuSolido.desenharVertices();
+	//meuSolido.desenharArestas();
+	meuSolido.desenhar();
 	//meuSolido.desenhar3d();
 	//$("#info").html(meuSolido.imprimirTabelaGeral());
 

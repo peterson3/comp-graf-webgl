@@ -7,6 +7,11 @@ class Aresta {
 	console.log("Aresta Adicionada = E" + this.i + "(V"+this.vertice1.i+",V"+this.vertice2.i +")");
 
   }
+  
+	getVerticeCentro(){
+		let verticeCentro = new Vertice((vertice1.x + vertice2.x)/2, (vertice1.y + vertice2.y)/2, (vertice1.z + vertice2.z)/2 );
+		return verticeCentro;
+	}
 
 	desenhar(){
     context.beginPath();
@@ -21,7 +26,7 @@ class Aresta {
     context.lineTo(this.vertice2.x, this.vertice2.y);
     context.stroke();
 	context.fillStyle = "green";
-	context.fillText(this.i, (this.vertice1.x + this.vertice2.x)/2, (this.vertice1.y+this.vertice2.y)/2);
+	//context.fillText(this.i, (this.vertice1.x + this.vertice2.x)/2, (this.vertice1.y+this.vertice2.y)/2);
   }
 
 	//Retorna o Vertice Intersecao entre duas arestas

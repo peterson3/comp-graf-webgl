@@ -71,4 +71,15 @@ class Utils{
 	static RadianosParaGraus(radianos){
 		return radianos * (180/Math.PI);;
 	}
+	
+	static compararProfundidadeFace(face1,face2){
+		if (face1.getCentroide().z < face2.getCentroide().z){
+			return 1; //Face 1 fica por ultimo no sistema de ordenação (desenhado por ultimo) 
+		}
+		if (face1.getCentroide().z > face2.getCentroide().z){
+			return -1; //face 1 fica antes no sistem de ordenação (desenhado primeiro)
+		}
+		//tanto faz
+		return 0;
+	}
 }
