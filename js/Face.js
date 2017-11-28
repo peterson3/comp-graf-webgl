@@ -5,41 +5,13 @@ class Face {
 		this.i = FACE_COUNTER;
 		FACE_COUNTER++;
 		this.color = Utils.getRandomColor();
+		this.normal = null;
 	}
 	
-	//O desenho vai de 0 a n-1
 	desenhar(){
 		//iniciar "caminho"
-		
-//	    context.beginPath();
-//		context.rect(20, 20, 150, 100);
-
-//		context.moveTo(0, 0);
-//		context.lineTo(110,70);
-//		context.lineTo(0, 0);
-//		context.fillStyle="blue";
-//		context.fill();
-
-// the triangle
-//context.beginPath();
-//context.moveTo(100, 100);
-//context.lineTo(100, 300);
-//context.lineTo(300, 300);
-//context.closePath();
- 
-// the outline
-//context.lineWidth = 5;
-//context.strokeStyle = '#666666';
-//context.stroke();
- 
-// the fill color
-//context.fillStyle = "#FFCC00";
-//context.fill();
-
-
-		//Começar caminho
 		context.beginPath();
-		
+		// console.clear();
 		//recuperar quantidade de arestas na face 
 		let qtdArestas = this.arestas.length;
 		
@@ -52,20 +24,32 @@ class Face {
 		
 		//iterar sobre o vetor
 		for (let i=0; i<qtdArestas; i++){
+			let StartArestaIndex;
+			let EndArestaIndex;
+
 			if (i==(qtdArestas-1)){
 				//Ultima Iteracao
-				this.ligarAresta(this.arestas[i], this.arestas[0]);
+				StartArestaIndex = i;
+				EndArestaIndex = 0;
+				//console.log("ligando aresta " + i + " e " + "0");
 			}
 			else{
-				this.ligarAresta(this.arestas[i], this.arestas[i+1]);
+				StartArestaIndex = i;
+				EndArestaIndex = i+1;
+				//console.log("ligando aresta " + i + " e " + (i+1));
 			}
+			//console.log ("Face conectando arestas "+ StartArestaIndex + " e " + EndArestaIndex)
+		    this.ligarAresta(this.arestas[StartArestaIndex], this.arestas[EndArestaIndex]);
 		}
-		
+
+
+		//this.ligarAresta(this.arestas[1], this.arestas[2]);
+
 		//
 		context.closePath();
 		
 		// the outline
-		context.lineWidth = 1;
+		context.lineWidth = 0;
 		//context.strokeStyle = "red";
 		context.stroke();
 		
@@ -74,34 +58,46 @@ class Face {
 		//context.fillStyle = "red";
 		context.fillStyle = this.color;
 		context.fill();
-
+		this.getVetorNormal();
 	}
 	
 	ligarAresta(aresta1, aresta2){
 		//identificar o ponto de interseção (x,y) entre aresta1 e aresta2
 		var intersec = Aresta.getVerticeIntersecao(aresta1, aresta2);
 		//definir o ponto inicial da aresta 1: é o ponto que não intercede com aresta2
-		var p_inicial;
+		let p1;
+		let p2;
+		let p3;
+
 		if (aresta1.vertice1.eIgual(intersec)){
 			//nao é esse o ponto
-			p_inicial = aresta1.vertice2;
+			p1 = aresta1.vertice2;
+			p2 = aresta1.vertice1;
 		}
 		else{
-			p_inicial = aresta1.vertice1;
+			p1 = aresta1.vertice1;
+			p2 = aresta1.vertice2;
 		}
+
+		//Start Point
+
+		//Percorre a Primeira Aresta
 		
-		context.lineTo(p_inicial.x, p_inicial.y);
 		
 		//definir o ponto final da aresta 2: é o ponto que não interce com aresta 1
-		var p_final;
 		if (aresta2.vertice1.eIgual(intersec)){
-			p_final = aresta2.vertice2;
+			p3 = aresta2.vertice2;
 		}
 		else{
-			p_final = aresta2.vertice1;
+			p3 = aresta2.vertice1;
 		}
-		
-		context.lineTo(p_final.x, p_final.y);
+
+		let distancia = 30;
+
+
+		context.lineTo(p1.x, p1.y);
+		context.lineTo(p2.x, p2.y);
+		context.lineTo(p3.x, p3.y);
 	}	
 	
 	getCentroide(){
@@ -124,9 +120,18 @@ class Face {
 	}
 
 	getVetorNormal(){
-		//Para cada um das Arestas da Face
-			//Recuperar os Vértices da aresta
-			//Para cada um dos vértices da aresta
-			//Cálcular a normal do conjunto de Vértices	
+		//Verificar a quantidade de Arestas 
+		//Se arestas é igual a 4 (como desejado)
+		let qtdArestas = this.arestas.length;
+		let vetores = [];
+		for (let i=0; i<qtdArestas; i++){
+			let vetorNovo = Vetor.newVectorByVertexes(this.arestas[i].vertice1, this.arestas[i].vertice2);
+			vetores.push(vetorNovo);
+			console.log("Vetor Novo["+i+"]: " + vetorNovo.x + "," + vetorNovo.y + "," + vetorNovo.z);
+		}
+		//vetor1  aresta [0] vertice 2  - aresta [0] vertice 1
+		//vetor 2 aresta [1] vertice 2 - aresta [1] vertice 1
+		//vetor 3 aresta [2] vertie 2 - aresta [2] vertice 1 
+		//definidor esses 3 vetores, fazer o produtor vettorial entre eles para definir a normal
 	}
 }

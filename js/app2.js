@@ -87,10 +87,10 @@ $(document).ready(function(){
 	//meuSolido.gerarMeuSolido_Estranho();
 	//meuSolido.gerarMeuSolido_Cubo();
 	meuSolido.gerarMeuSolido_batmerang();
+
 	//meuSolido.desenharVertices();
 	//meuSolido.desenharArestas();
-	meuSolido.desenhar();
-	//meuSolido.desenhar3d();
+	meuSolido.animar();
 	//$("#info").html(meuSolido.imprimirTabelaGeral());
 
 	//let centroide = meuSolido.getVerticeCentro();
@@ -154,7 +154,7 @@ $(document).ready(function(){
 
 	function func4(){
 		meuSolido.transformar(MATRIZ_ROT_Y);
-		animarSolido();
+	   animarSolido();
 	}
 
 	function func5(){

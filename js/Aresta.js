@@ -1,11 +1,10 @@
 class Aresta {
   constructor (vertice1, vertice2){
-    this.vertice1 = vertice1;
-    this.vertice2 = vertice2;
-	this.i = ARESTA_COUNTER;
-	ARESTA_COUNTER++;
-	console.log("Aresta Adicionada = E" + this.i + "(V"+this.vertice1.i+",V"+this.vertice2.i +")");
-
+	    this.vertice1 = vertice1;
+	    this.vertice2 = vertice2;
+		this.i = ARESTA_COUNTER;
+		ARESTA_COUNTER++;
+		//console.log("Aresta Adicionada = E" + this.i + "(V"+this.vertice1.i+",V"+this.vertice2.i +")");
   }
   
 	getVerticeCentro(){
@@ -14,19 +13,19 @@ class Aresta {
 	}
 
 	desenhar(){
-    context.beginPath();
-    context.moveTo(this.vertice1.x*ZOOM, this.vertice1.y*ZOOM);
-    context.lineTo(this.vertice2.x*ZOOM, this.vertice2.y*ZOOM);
-    context.stroke();
+	    context.beginPath();
+	    context.moveTo(this.vertice1.x*ZOOM, this.vertice1.y*ZOOM);
+	    context.lineTo(this.vertice2.x*ZOOM, this.vertice2.y*ZOOM);
+	    context.stroke();
   }
 
 	desenhar_com_numero(){
-    context.beginPath();
-    context.moveTo(this.vertice1.x, this.vertice1.y);
-    context.lineTo(this.vertice2.x, this.vertice2.y);
-    context.stroke();
-	context.fillStyle = "green";
-	//context.fillText(this.i, (this.vertice1.x + this.vertice2.x)/2, (this.vertice1.y+this.vertice2.y)/2);
+	    context.beginPath();
+	    context.moveTo(this.vertice1.x, this.vertice1.y);
+	    context.lineTo(this.vertice2.x, this.vertice2.y);
+	    context.stroke();
+		context.fillStyle = "green";
+		//context.fillText(this.i, (this.vertice1.x + this.vertice2.x)/2, (this.vertice1.y+this.vertice2.y)/2);
   }
 
 	//Retorna o Vertice Intersecao entre duas arestas

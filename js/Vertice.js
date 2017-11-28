@@ -6,7 +6,8 @@ class Vertice {
 	this.w = 1;
 	this.i = VERTICE_COUNTER;
 	VERTICE_COUNTER ++;
-	console.log("Vertice Adicionado = V" + this.i + "("+this.x+","+this.y+","+this.z+")");
+	this.direcao = null;
+	//console.log("Vertice Adicionado = V" + this.i + "("+this.x+","+this.y+","+this.z+")");
   }
 
   /**
@@ -52,11 +53,11 @@ class Vertice {
   * Transforma vértice e desenhar ponto da tela correspondente
   */
   desenhar() {
-    console.log ("V"+this.i+ "=("+this.x + "," + this.y + "," + this.z+ ")");
+    //console.log ("V"+this.i+ "=("+this.x + "," + this.y + "," + this.z+ ")");
 	//this.x /= this.z;
 	//this.y /= this.z;
 	//this.z = 1;
-    console.log ("V'"+this.i+ "=("+this.x + "," + this.y + "," + this.z + ")");
+    //console.log ("V'"+this.i+ "=("+this.x + "," + this.y + "," + this.z + ")");
 	Ponto.desenhar(this.x, this.y);
   }
 
