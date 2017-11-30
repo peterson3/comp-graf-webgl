@@ -4,8 +4,7 @@ class Face {
 		this.arestas = vec;
 		this.i = FACE_COUNTER;
 		FACE_COUNTER++;
-		this.color = Utils.getRandomColor();
-		this.normal = null;
+		//this.color = Utils.getRandomColor();
 	}
 	
 	desenhar(){
@@ -55,10 +54,16 @@ class Face {
 		
 		//randomColor
 		// the fill color
-		//context.fillStyle = "red";
-		context.fillStyle = this.color;
+		context.fillStyle = "white";
+		//context.fillStyle = this.color;
 		context.fill();
-		this.getVetorNormal();
+	}
+
+	static async animar(vecFaces){
+		for (let i=0; i<vecFaces.length; i++){
+			await Utils.sleep(1000);
+			vecFaces[i].desenhar();
+		}
 	}
 	
 	ligarAresta(aresta1, aresta2){
@@ -127,11 +132,13 @@ class Face {
 		for (let i=0; i<qtdArestas; i++){
 			let vetorNovo = Vetor.newVectorByVertexes(this.arestas[i].vertice1, this.arestas[i].vertice2);
 			vetores.push(vetorNovo);
-			console.log("Vetor Novo["+i+"]: " + vetorNovo.x + "," + vetorNovo.y + "," + vetorNovo.z);
+			//console.log("Vetor Novo["+i+"]: " + vetorNovo.x + "," + vetorNovo.y + "," + vetorNovo.z);
 		}
-		//vetor1  aresta [0] vertice 2  - aresta [0] vertice 1
-		//vetor 2 aresta [1] vertice 2 - aresta [1] vertice 1
-		//vetor 3 aresta [2] vertie 2 - aresta [2] vertice 1 
-		//definidor esses 3 vetores, fazer o produtor vettorial entre eles para definir a normal
+
+		//QuaisQuer dois vetores da face
+		let xNovo = (vetores[0].y * vetores[1].z) - (vetores[1].y * vetores[0].z);   
+		let yNovo = (vetores[0].z * vetores[1].x) - (vetores[1].z * vetores[0].x);
+		let zNovo = (vetores[0].x * vetores[1].y) - (vetores[1].x * vetores[0].y);
+		return new Vetor(xNovo,yNovo,zNovo);
 	}
 }

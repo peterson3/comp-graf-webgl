@@ -342,4 +342,13 @@ class Solido{
 		
 		return new Vertice(xSum/qtd_vertices, ySum/qtd_vertices, zSum/qtd_vertices);
 	}
+
+	getListaDeNormais(){
+		let normais = [];
+
+		for (let i=0; i<this.faces.length; i++){
+			normais.push(this.faces[i].getVetorNormal());
+		}
+		return normais;
+	}
 }

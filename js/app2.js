@@ -87,10 +87,43 @@ $(document).ready(function(){
 	//meuSolido.gerarMeuSolido_Estranho();
 	//meuSolido.gerarMeuSolido_Cubo();
 	meuSolido.gerarMeuSolido_batmerang();
-
+	meuSolido.sweep();
+	meuSolido.projetar("Perspectiva");
 	//meuSolido.desenharVertices();
 	//meuSolido.desenharArestas();
-	meuSolido.animar();
+	
+
+	//meuSolido.animar();
+	
+
+	let normais = meuSolido.getListaDeNormais();
+	console.table(normais);
+
+	//Definindo um Vetor de Luz
+	let luz = new Vetor(30,15,-20);
+
+
+	//Testando as funções
+	//console.log(luz);
+	//console.log(luz.getModulo());
+	//luz = luz.getNormalizado();
+	//console.log(luz);
+	//console.log(luz.getModulo());
+
+	//Para cada Face, verificar se ele o produto escalar é maior que zero
+	let facesToBeDrawed = [];
+	for (let i=0; i<normais.length; i++){
+		let prodEscalar = Vetor.ProdutoEscalar(normais[i], luz);
+		if (prodEscalar>0){
+			console.log("Normal " + i + " dentro do campo de visão - na lista para desenhar...");
+			facesToBeDrawed.push(meuSolido.faces[i]);
+		}
+	}
+
+	Face.animar(facesToBeDrawed);
+
+
+
 	//$("#info").html(meuSolido.imprimirTabelaGeral());
 
 	//let centroide = meuSolido.getVerticeCentro();
