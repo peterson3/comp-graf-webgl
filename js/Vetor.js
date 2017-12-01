@@ -31,6 +31,13 @@ class Vetor {
       return (v1.x*v2.x + v1.y*v2.y + v1.z*v2.z);
   }
 
+  static ProdutoInterno (v1,v2){
+    let numerador = Vetor.ProdutoEscalar(v1,v2);
+    let denominador = v1.getModulo()*v2.getModulo();
+    return numerador/denominador;
+
+  }
+
   static AnguloEntre(v1,v2){
       let numerador = Vetor.ProdutoEscalar(v1,v2);
       let denominador = (v1.getModulo()*v2.getModulo());

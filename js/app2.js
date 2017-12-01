@@ -119,17 +119,16 @@ $(document).ready(function(){
 	let Ii = 1; //???
 	let kd = 1; //kd é a componente de reflectância difusa do material, dependente do comprimento de onda
 
-	let rgb = [255,255,10];
-
 	for (let i=0; i<normais.length; i++){
-		let prodEscalar = Vetor.ProdutoEscalar(normais[i], luz);
+		let prodEscalar = Vetor.ProdutoInterno(normais[i], luz);
 		if (prodEscalar>0){
 			console.log("Normal " + i + " dentro do campo de visão - na lista para desenhar...");
 			cosTethaIluminacao.push(prodEscalar);
 			let IdFace = kd*Ii*prodEscalar;
 			console.log ("Iluminação difusa nesta face: " + IdFace);
-			Idfaces.push(IdFace);
-			colors.push('rgb('+rgb[0]+', '+rgb[1]+', '+rgb[2]+')');
+			Idfaces.push(IdFace); //Iluminação das Faces
+			//colors.push('rgb('+rgb[0]+', '+rgb[1]+', '+rgb[2]+')');
+			colors.push('hsl(0, 10%, '+IdFace*100+'%)')
 			facesToBeDrawed.push(meuSolido.faces[i]);
 		}
 	}
