@@ -128,7 +128,7 @@ $(document).ready(function(){
 			console.log ("Iluminação difusa nesta face: " + IdFace);
 			Idfaces.push(IdFace); //Iluminação das Faces
 			//colors.push('rgb('+rgb[0]+', '+rgb[1]+', '+rgb[2]+')');
-			colors.push('hsl(0, 10%, '+IdFace*100+'%)')
+			colors.push('hsl(90, 20%, '+IdFace*100+'%)')
 			facesToBeDrawed.push(meuSolido.faces[i]);
 		}
 	}
