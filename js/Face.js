@@ -7,7 +7,7 @@ class Face {
 		//this.color = Utils.getRandomColor();
 	}
 	
-	desenhar(){
+	desenhar(color){
 		//iniciar "caminho"
 		context.beginPath();
 		// console.clear();
@@ -54,15 +54,15 @@ class Face {
 		
 		//randomColor
 		// the fill color
-		context.fillStyle = "white";
+		context.fillStyle = color;
 		//context.fillStyle = this.color;
 		context.fill();
 	}
 
-	static async animar(vecFaces){
+	static async animar(vecFaces, colors, time){
 		for (let i=0; i<vecFaces.length; i++){
-			await Utils.sleep(1000);
-			vecFaces[i].desenhar();
+			await Utils.sleep(time);
+			vecFaces[i].desenhar(colors[i]);
 		}
 	}
 	
