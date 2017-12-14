@@ -16,6 +16,7 @@ class Ponto {
     context.lineWidth = 1;
     context.strokeStyle = '#003300';
     context.stroke(); 
+    context.closePath();
   }
   
   /**

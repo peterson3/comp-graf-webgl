@@ -125,6 +125,8 @@ class Solido{
  		console.log("Sólido Definido");
 	}
 
+
+
 	sweep(){
 
 
@@ -351,4 +353,49 @@ class Solido{
 		}
 		return normais;
 	}
+
+	desenharCurvilineo(){
+	
+
+	var accuracy = 0.1;
+	context.moveTo(this.vertices[0].x, this.vertices[0].y);
+
+		 
+		// for (let j=0; j<this.vertices.length; j=j+4){
+      for (let i=0; i<1; i+=accuracy){
+         var p = Curva.bezier(i, this.vertices[0], this.vertices[1], this.vertices[2], this.vertices[3]);
+         context.lineTo(p.x, p.y);
+      }
+
+
+// } 
+       for (let i=0; i<1; i+=accuracy){
+         var p = Curva.bezier(i, this.vertices[4], this.vertices[5], this.vertices[6], this.vertices[7]);
+         context.lineTo(p.x, p.y);
+      }
+
+      
+      	context.moveTo(this.vertices[0].x, this.vertices[0].y);
+
+
+          for (let i=0; i<1; i+=accuracy){
+         var p = Curva.bezier(i, this.vertices[0], this.vertices[16], this.vertices[15], this.vertices[14]);
+         context.lineTo(p.x, p.y);
+      }
+
+             for (let i=0; i<1; i+=accuracy){
+         var p = Curva.bezier(i, this.vertices[13], this.vertices[12], this.vertices[11], this.vertices[10]);
+         context.lineTo(p.x, p.y);
+      }
+
+
+             for (let i=0; i<1; i+=accuracy){
+         var p = Curva.bezier(i, this.vertices[9], this.vertices[8], this.vertices[8], this.vertices[7]);
+         context.lineTo(p.x, p.y);
+      }
+
+
+            context.stroke();
+		}
+	
 }

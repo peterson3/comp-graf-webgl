@@ -11,147 +11,203 @@
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.js"></script>
-  <script src="js/Color.js"></script>
   <script src="js/Utils.js"></script>
   <script src="js/Ponto.js"></script>
   <script src="js/Vertice.js"></script>
   <script src="js/Vetor.js"></script>
   <script src="js/Aresta.js"></script>
   <script src="js/Face.js"></script>
+  <script src="js/Curva.js"></script>
   <script src="js/Solido.js"></script>
   <script src="js/app2.js"></script>
 	</head>
 	<body>
-    <div class="container-fluid">
+<div class="container container-fluid">
 
+<h1>CG/CompSci@UFF</h1>
 
-
-<!--<div class="jumbotron">
-  <h1 class="display-3">GC@UFF/CompSci</h1>
-  <p class="lead"></p>
-  <hr class="my-4">
-</div>-->
-
-	<div class="col-5">
-	<!--style="border-style:solid; float:left;"-->
+	<div class="col">
   <canvas  id="glcanvas" width="400" height="400" style="border-style:solid; float:left;">
     Browser sem suporte ao CANVAS
     <code>&lt;canvas&gt;</code>.
   </canvas>
     </div>
 
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!--MODAL END-->
-
-
-    <div class="form-row">
+<div class="form-row">
   <div class="col">
-    <div class="alert alert-danger" role="alert">
-  This is a danger alert—check it out!
-</div>
-    <label for="exampleInputEmail1">Imprimir Vértice</label>
     </div>
     <div class="col">
-    <input type="text" id="input_num_vert" lass="form-control"></input>
 </div>
-    <small id="emailHelp" class="form-text text-muted">Será exibido como matriz</small>
-    <button class="btn btn-primary" id="pv_btn">Imprimir</button>
   </div>
 
 
-  <button id="lc_btn">Limpar Canvas</button>
-  <button id="2d_btn">Desenhar 2d</button>
-  <!--<button id="3d_btn">Desenhar 3d</button>-->
-  <button id="animar_btn">Animar</button>
-  <button id="1_btn">Transladar em X</button>
-  <button id="2_btn">Escalar em X,Y e Z</button>
-  <button id="3_btn">Rotacionar em X</button>
-  <button id="4_btn">Rotacionar em Y</button>
-  <button id="5_btn">Rotacionar em Z</button>
-  <button id="6_btn">Redefinir</button>
-  <button id="7_btn">Transladar para o centro</button>
-  <button id="8_btn">Proj Persp</button>
 </div>
 
 
 <div class="container">
+    <!--Linha-->
+    <div class="form-group row">
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
+      <div class="col-sm-10">
+  <button id="boomerang_btn" class="btn btn-primary">Definir Objeto (Batman Boomerang)</button>
+      </div>
+    </div>
+    <!--FimLinha-->
 
-    <div class="form-group row">
-      <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+    <!--Linha-->
+<!--     <div class="form-group row">
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
       <div class="col-sm-10">
-        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+  <button id="cube_btn" class="btn btn-primary">Definir Objeto (Cubo)</button>
+      </div>
+    </div> -->
+    <!--FimLinha-->
+
+      <!--Linha-->
+    <div class="form-group row">
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
+      <div class="col-sm-10">
+  <button id="2d_btn" class="btn btn-primary">Desenhar 2d</button>
       </div>
     </div>
+    <!--FimLinha-->
+
+          <!--Linha-->
     <div class="form-group row">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
       <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+  <button id="sweep_btn" class="btn btn-primary">Sweep</button>
       </div>
     </div>
-    <fieldset class="form-group">
-      <div class="row">
-        <legend class="col-form-legend col-sm-2">Radios</legend>
-        <div class="col-sm-10">
-          <div class="form-check">
-            <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-              Option one is this and that&mdash;be sure to include why it's great
-            </label>
-          </div>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-              Option two can be something else and selecting it will deselect option one
-            </label>
-          </div>
-          <div class="form-check disabled">
-            <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
-              Option three is disabled
-            </label>
-          </div>
-        </div>
-      </div>
-    </fieldset>
+    <!--FimLinha-->
+
+          <!--Linha-->
     <div class="form-group row">
-      <div class="col-sm-2">Checkbox</div>
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
       <div class="col-sm-10">
-        <div class="form-check">
-          <label class="form-check-label">
-            <input class="form-check-input" type="checkbox"> Check me out
-          </label>
-        </div>
+  <button id="3d_btn" class="btn btn-primary">Desenhar 3d</button>
       </div>
     </div>
+    <!--FimLinha-->
+
+    <!--Linha-->
     <div class="form-group row">
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
       <div class="col-sm-10">
-        <button type="submit" class="btn btn-primary">Sign in</button>
+  <button id="animar_btn" class="btn btn-primary" >Animar</button>
       </div>
     </div>
+    <!--FimLinha-->
+
+
+          <!--Linha-->
+    <div class="form-group row">
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
+      <div class="col-sm-10">
+  <button id="1_btn" class="btn btn-primary">Transladar em X</button>
+      </div>
+    </div>
+    <!--FimLinha-->
+
+              <!--Linha-->
+    <div class="form-group row">
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
+      <div class="col-sm-10">
+  <button id="2_btn" class="btn btn-primary">Escalar em X,Y e Z</button>
+      </div>
+    </div>
+    <!--FimLinha-->
+
+
+              <!--Linha-->
+    <div class="form-group row">
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
+      <div class="col-sm-10">
+  <button id="3_btn" class="btn btn-primary">Rotacionar em X</button>
+      </div>
+    </div>
+    <!--FimLinha-->
+
+
+              <!--Linha-->
+    <div class="form-group row">
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
+      <div class="col-sm-10">
+  <button id="4_btn" class="btn btn-primary">Rotacionar em Y</button>
+      </div>
+    </div>
+    <!--FimLinha-->
+
+                <!--Linha-->
+    <div class="form-group row">
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
+      <div class="col-sm-10">
+  <button id="5_btn" class="btn btn-primary">Rotacionar em Z</button>
+      </div>
+    </div>
+    <!--FimLinha-->
+
+
+                <!--Linha-->
+    <div class="form-group row">
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
+      <div class="col-sm-10">
+  <button id="6_btn" class="btn btn-primary">Redefinir</button>
+      </div>
+    </div>
+    <!--FimLinha-->
+
+
+
+                <!--Linha-->
+    <div class="form-group row">
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
+      <div class="col-sm-10">
+  <button id="7_btn" class="btn btn-primary">Transladar para o centro</button>
+      </div>
+    </div>
+    <!--FimLinha-->
+
+
+     <!--Linha-->
+    <div class="form-group row">
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
+      <div class="col-sm-10">
+  <button id="8_btn" class="btn btn-primary">Proj Ort</button>
+      </div>
+    </div>
+    <!--FimLinha-->
+
+     <!--Linha-->
+    <div class="form-group row">
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
+      <div class="col-sm-10">
+  <button id="8_btn" class="btn btn-primary">Proj Persp</button>
+      </div>
+    </div>
+    <!--FimLinha-->
+
+
+    <!--Linha-->
+    <div class="form-group row">
+      <div for="inputEmail3" class="col-sm-2 col-form-label"></div>
+      <div class="col-sm-10">
+          <button id="lc_btn" class="btn btn-primary">Limpar Canvas</button>
+      </div>
+    </div>
+    <!--FimLinha-->
+
+  <!--Linha-->
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Vértice</label>
+      <div class="col-sm-10">
+      <input type="text" id="input_num_vert" lass="form-control"></input>
+        <button class="btn btn-primary" id="pv_btn">Imprimir</button>
+       <small id="emailHelp" class="form-text text-muted">Será exibido como matriz</small>
+      </div>
+    </div>
+    <!--FimLinha-->
 
 </div>
   <div id="interact"></div>

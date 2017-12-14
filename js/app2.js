@@ -88,7 +88,7 @@ $(document).ready(function(){
 	//meuSolido.gerarMeuSolido_Cubo();
 	meuSolido.gerarMeuSolido_batmerang();
 	meuSolido.sweep();
-	meuSolido.projetar("Perspectiva");
+	 meuSolido.projetar("Perspectiva");
 	//meuSolido.desenharVertices();
 	//meuSolido.desenharArestas();
 	
@@ -133,7 +133,9 @@ $(document).ready(function(){
 		}
 	}
 
-	Face.animar(facesToBeDrawed, colors, 500);
+	//Face.animar(facesToBeDrawed, colors, 500);
+
+	meuSolido.desenharCurvilineo();
 
 
 
