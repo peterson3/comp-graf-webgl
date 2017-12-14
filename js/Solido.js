@@ -369,9 +369,10 @@ class Solido{
 
 
 // } 
+	//context.moveTo(this.vertices[4].x, this.vertices[4].y);
        for (let i=0; i<1; i+=accuracy){
          var p = Curva.bezier(i, this.vertices[4], this.vertices[5], this.vertices[6], this.vertices[7]);
-         context.lineTo(p.x, p.y);
+        context.lineTo(p.x, p.y);
       }
 
       
@@ -397,5 +398,14 @@ class Solido{
 
             context.stroke();
 		}
+
+		sweepCurve(){
+
+
+			
+		}
 	
 }
+
+
+

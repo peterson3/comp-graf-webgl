@@ -136,6 +136,7 @@ $(document).ready(function(){
 	//Face.animar(facesToBeDrawed, colors, 500);
 
 	meuSolido.desenharCurvilineo();
+	meuSolido.sweep();
 
 
 
