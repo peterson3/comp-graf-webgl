@@ -87,56 +87,58 @@ $(document).ready(function(){
 	//meuSolido.gerarMeuSolido_Estranho();
 	//meuSolido.gerarMeuSolido_Cubo();
 	meuSolido.gerarMeuSolido_batmerang();
+	meuSolido.definirCurvas();
+	meuSolido.ligarArestas();
 	meuSolido.sweep();
-	 meuSolido.projetar("Perspectiva");
-	//meuSolido.desenharVertices();
-	//meuSolido.desenharArestas();
-	
+	meuSolido.sweep();
+	meuSolido.projetar("Perspectiva");
+	meuSolido.desenharVertices();
+	meuSolido.desenharArestas();
+	meuSolido.desenharFaces();
 
 	//meuSolido.animar();
 	
 
-	let normais = meuSolido.getListaDeNormais();
-	console.table(normais);
+	// let normais = meuSolido.getListaDeNormais();
+	// console.table(normais);
 
-	//Definindo um Vetor de Luz
-	let luz = new Vetor(30,15,-20);
+	// //Definindo um Vetor de Luz
+	// let luz = new Vetor(30,15,-20);
 
 
-	//Testando as funções
-	//console.log(luz);
-	//console.log(luz.getModulo());
-	//luz = luz.getNormalizado();
-	//console.log(luz);
-	//console.log(luz.getModulo());
+	// //Testando as funções
+	// //console.log(luz);
+	// //console.log(luz.getModulo());
+	// //luz = luz.getNormalizado();
+	// //console.log(luz);
+	// //console.log(luz.getModulo());
 
-	//Para cada Face, verificar se ele o produto escalar é maior que zero
-	let facesToBeDrawed = [];
-	let cosTethaIluminacao = [];
-	let Idfaces = []; //Iluminação difusa de cada face
-	let colors = [];
+	// //Para cada Face, verificar se ele o produto escalar é maior que zero
+	// let facesToBeDrawed = [];
+	// let cosTethaIluminacao = [];
+	// let Idfaces = []; //Iluminação difusa de cada face
+	// let colors = [];
 
-	let Ii = 1; //???
-	let kd = 1; //kd é a componente de reflectância difusa do material, dependente do comprimento de onda
+	// let Ii = 1; //???
+	// let kd = 1; //kd é a componente de reflectância difusa do material, dependente do comprimento de onda
 
-	for (let i=0; i<normais.length; i++){
-		let prodEscalar = Vetor.ProdutoInterno(normais[i], luz);
-		if (prodEscalar>0){
-			console.log("Normal " + i + " dentro do campo de visão - na lista para desenhar...");
-			cosTethaIluminacao.push(prodEscalar);
-			let IdFace = kd*Ii*prodEscalar;
-			console.log ("Iluminação difusa nesta face: " + IdFace);
-			Idfaces.push(IdFace); //Iluminação das Faces
-			//colors.push('rgb('+rgb[0]+', '+rgb[1]+', '+rgb[2]+')');
-			colors.push('hsl(90, 20%, '+IdFace*100+'%)')
-			facesToBeDrawed.push(meuSolido.faces[i]);
-		}
-	}
+	// for (let i=0; i<normais.length; i++){
+	// 	let prodEscalar = Vetor.ProdutoInterno(normais[i], luz);
+	// 	if (prodEscalar>0){
+	// 		console.log("Normal " + i + " dentro do campo de visão - na lista para desenhar...");
+	// 		cosTethaIluminacao.push(prodEscalar);
+	// 		let IdFace = kd*Ii*prodEscalar;
+	// 		console.log ("Iluminação difusa nesta face: " + IdFace);
+	// 		Idfaces.push(IdFace); //Iluminação das Faces
+	// 		//colors.push('rgb('+rgb[0]+', '+rgb[1]+', '+rgb[2]+')');
+	// 		colors.push('hsl(90, 20%, '+IdFace*100+'%)')
+	// 		facesToBeDrawed.push(meuSolido.faces[i]);
+	// 	}
+	// }
 
 	//Face.animar(facesToBeDrawed, colors, 500);
 
-	meuSolido.desenharCurvilineo();
-	meuSolido.sweep();
+	
 
 
 

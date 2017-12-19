@@ -112,7 +112,11 @@ class Solido{
 				this.vertices[i].y *= -10
 			}
 
-		//Definindo Arestas
+ 		console.log("Sólido Definido");
+	}
+
+	ligarArestas (){
+			//Definindo Arestas
 			for (let i=0; i<this.vertices.length; i++){
 				if (i+1 == this.vertices.length){
 					this.arestas.push(new Aresta(this.vertices[i], this.vertices[0]));		
@@ -121,8 +125,6 @@ class Solido{
 					this.arestas.push(new Aresta(this.vertices[i], this.vertices[i+1]));		
 				}
 			}
-
- 		console.log("Sólido Definido");
 	}
 
 
@@ -180,6 +182,10 @@ class Solido{
 	 		 if (this.vertices[i].z != 0){
 	 			 this.vertices[i].x = (distancia / this.vertices[i].z ) * this.vertices[i].x;
 	 			 this.vertices[i].y = (distancia / this.vertices[i].z ) * this.vertices[i].y;	
+	 		 }
+	 		 else{
+	 		 	 this.vertices[i].x = (distancia / this.vertices[i].z ) * this.vertices[i].x;
+	 			 this.vertices[i].y = (distancia / this.vertices[i].z ) * this.vertices[i].y;
 	 		 }
 	 		}	
 		}
@@ -354,56 +360,56 @@ class Solido{
 		return normais;
 	}
 
-	desenharCurvilineo(){
+	definirCurvas(){
 	
-
-	var accuracy = 0.1;
-	context.moveTo(this.vertices[0].x, this.vertices[0].y);
-
-		 
-		// for (let j=0; j<this.vertices.length; j=j+4){
-      for (let i=0; i<1; i+=accuracy){
-         var p = Curva.bezier(i, this.vertices[0], this.vertices[1], this.vertices[2], this.vertices[3]);
-         context.lineTo(p.x, p.y);
-      }
-
-
-// } 
-	//context.moveTo(this.vertices[4].x, this.vertices[4].y);
-       for (let i=0; i<1; i+=accuracy){
-         var p = Curva.bezier(i, this.vertices[4], this.vertices[5], this.vertices[6], this.vertices[7]);
-        context.lineTo(p.x, p.y);
-      }
-
-      
-      	context.moveTo(this.vertices[0].x, this.vertices[0].y);
-
-
-          for (let i=0; i<1; i+=accuracy){
-         var p = Curva.bezier(i, this.vertices[0], this.vertices[16], this.vertices[15], this.vertices[14]);
-         context.lineTo(p.x, p.y);
-      }
-
-             for (let i=0; i<1; i+=accuracy){
-         var p = Curva.bezier(i, this.vertices[13], this.vertices[12], this.vertices[11], this.vertices[10]);
-         context.lineTo(p.x, p.y);
-      }
-
-
-             for (let i=0; i<1; i+=accuracy){
-         var p = Curva.bezier(i, this.vertices[9], this.vertices[8], this.vertices[8], this.vertices[7]);
-         context.lineTo(p.x, p.y);
-      }
-
-
-            context.stroke();
-		}
-
-		sweepCurve(){
-
-
+		let profundidade = this.vertices[0].z;
+		let novosVertices = [];
+		var accuracy = 0.1;
+		context.moveTo(this.vertices[0].x, this.vertices[0].y);
 			
+			for (let i=0; i<1; i+=accuracy){
+	         var p = Curva.bezier(i, this.vertices[0], this.vertices[1], this.vertices[2], this.vertices[3]);
+	         novosVertices.push(new Vertice(p.x, p.y, profundidade));
+	         //console.log("Ponto da Bezier: " + p.x + " " + p.y + " " + profundidade);
+	         //context.lineTo(p.x, p.y);
+	      }
+
+	       for (let i=0; i<1; i+=accuracy){
+	         var p = Curva.bezier(i, this.vertices[4], this.vertices[5], this.vertices[6], this.vertices[7]);
+	         novosVertices.push(new Vertice(p.x, p.y, profundidade));
+	         //context.lineTo(p.x, p.y);
+	      }
+
+	      
+	      	context.moveTo(this.vertices[0].x, this.vertices[0].y);
+	          for (let i=0; i<1; i+=accuracy){
+	         var p = Curva.bezier(i, this.vertices[0], this.vertices[16], this.vertices[15], this.vertices[14]);
+	         novosVertices.push(new Vertice(p.x, p.y, profundidade));
+	         //context.lineTo(p.x, p.y);
+	      }
+
+	             for (let i=0; i<1; i+=accuracy){
+	            var p = Curva.bezier(i, this.vertices[13], this.vertices[12], this.vertices[11], this.vertices[10]);
+	            novosVertices.push(new Vertice(p.x, p.y, profundidade));
+	           // context.lineTo(p.x, p.y);
+	      }
+
+
+	      for (let i=0; i<1; i+=accuracy){
+	         var p = Curva.bezier(i, this.vertices[9], this.vertices[8], this.vertices[8], this.vertices[7]);
+	         novosVertices.push(new Vertice(p.x, p.y, profundidade));
+	         //context.lineTo(p.x, p.y);
+	      }
+
+
+	            context.stroke();
+
+	            // for (let i=0; i<this.vertices.length; i++){
+	            // 	context.fillRect(this.vertices[i].x,this.vertices[i].y,4,4);
+	            // }
+	          this.vertices = novosVertices;
 		}
+
 	
 }
 
